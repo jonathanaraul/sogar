@@ -51,10 +51,10 @@ class UsersController extends Controller {
 		$sexo = $post -> get("sexomasculino");
 		$email = $post -> get("email");
 		$descripcion = htmlentities(addslashes($post -> get("descripcion")));
-		$path = "images/avatar-man.png";
+		$path = "admin/images/avatar-man.png";
 
 		if ($sexo == 'false'){
-			$path = "images/avatar-woman.png";
+			$path = "admin/images/avatar-woman.png";
 			$sexo = 1;
 		}
 		else{
