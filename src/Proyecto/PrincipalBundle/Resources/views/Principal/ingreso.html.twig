@@ -1,0 +1,82 @@
+{% extends "ProyectoPrincipalBundle:Helpers:base.html.twig" %}
+{%block info%}{% include 'ProyectoPrincipalBundle:Helpers:info.html.twig' with {'info': info} %}{%endblock%}
+{%block scripts%}
+<script type="text/javascript">
+</script>
+{%endblock%}
+
+{%block contenido%}
+<input type="hidden" id="tipo" value="{%if menu.seccion == 'Nuevo'%}0{%else%}1{%endif%}">
+{%if object is not null%}
+<input type="hidden" id="id" value="{{object.id}}">
+{%endif%}
+<div class="row-fluid procesando-ocultar">
+	<div class="span12">
+		<!--PAGE CONTENT BEGINS-->
+		<div class="hide" style="display: block;">
+			<div id="user-profile-3" class="user-profile row-fluid">
+				<div class="offset1 span10">
+					<!--/well-->
+					<div class="space"></div>
+					<form class="form-horizontal" action="{{ url }}" method="post" {{ form_enctype(form) }} id="formulario" >
+						<div class="tabbable">
+							<ul class="nav nav-tabs padding-16">
+								<li class="active">
+									<a data-toggle="tab" href="#edit-basic"> <i class="green icon-edit bigger-125"></i> {{menu.titulo}} {{ form_errors(form) }} </a>
+								</li>
+							</ul>
+							<div class="tab-content profile-edit-tab-content">
+								<div id="edit-basic" class="tab-pane active">
+									<div class="space"></div>
+									<div class="control-group">
+										<label class="control-label" for="form-field-email">Titulo</label>
+										<div class="controls">
+											<span class="input-icon input-icon-right"> <!--<input type="text" id="Titulo" {%if object is not null%}value="{{object.titulo}}"{%endif%}>--> {{ form_widget(form.titulo) }} </span>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="form-field-website">Categoria</label>
+										<div class="controls">
+											<span class="input-icon input-icon-right"> {{ form_widget(form.categoria, { 'attr': {'style': 'width: 238px'} }) }} </span>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="form-field-facebook">Mensaje</label>
+										<div class="controls">
+											<span class="input-icon"> {{ form_widget(form.mensaje, { 'attr': {'class': 'span12 limited textarea', 'cols': '34'} }) }} </span>
+										</div>
+									</div>
+									<div class="control-group">
+										<!-- MAX_FILE_SIZE debe preceder el campo de entrada de archivo -->
+										<label class="control-label" for="form-field-twitter">Foto</label>
+										<div class="controls">
+											<span class="input-icon"> {{ form_widget(form.file) }} </span>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label">Habilitado</label>
+										<div class="controls">
+											<div class="row-fluid">
+												<div class="span3">
+													<label> {{ form_widget(form.habilitado, { 'attr': {'class': 'ace-switch','checked': 'checked'} }) }} <span class="lbl"></span> </label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-actions">
+							<input type="submit" class="btn btn-info" value="{%if accion == 'Nuevo'%}Guardar{%else%}Actualizar{%endif%}">
+						</div>
+						<div style="display: none">
+							{{ form_rest(form) }}
+						</div>
+					</form>
+				</div><!--/span-->
+			</div><!--/user-profile-->
+		</div>
+		<!--PAGE CONTENT ENDS-->
+	</div><!--/.span-->
+</div>
+{%endblock%} 

@@ -1,0 +1,73 @@
+{%if user is not null %}
+<li {%if menu.seccion == 'Inicio' %}class="active"{%endif%}>
+	<a href="{{path('proyecto_principal_homepage')}}"> <i class="icon-dashboard"></i> <span class="menu-text"> Panel de Control </span> </a>
+</li>
+<li {%if menu.seccion == 'Entradas' %}class="active"{%endif%} >
+	<a href="#"> <i class="icon-credit-card"></i> <span class="menu-text"> Entradas </span> <b class="arrow icon-angle-down"></b> </a>
+	<ul class="submenu" style="display: block;">
+		<li {%if menu.subseccion == 'Nueva entrada' %}class="active"{%endif%}>
+			<a href="{{ path('proyecto_principal_entrada_nuevo') }}"> <i class="icon-double-angle-right"></i> Nueva </a>
+		</li>
+		<li {%if menu.subseccion == 'Listado de entradas' %}class="active"{%endif%}>
+			<a href="{{ path('proyecto_principal_entrada_listado') }}"> <i class="icon-double-angle-right"></i> Listado </a>
+		</li>
+	</ul>
+</li>
+<li {%if menu.seccion == 'Archivos' %}class="active"{%endif%} >
+	<a href="#"> <i class="icon-folder-open"></i> <span class="menu-text"> Archivos </span> <b class="arrow icon-angle-down"></b> </a>
+	<ul class="submenu" style="display: block;">
+		<li {%if menu.subseccion == 'Nuevo archivo' %}class="active"{%endif%}>
+			<a href="{{ path('proyecto_principal_archivo_nuevo') }}"> <i class="icon-double-angle-right"></i> Nuevo </a>
+		</li>
+		<li {%if menu.subseccion == 'Listado de archivos' %}class="active"{%endif%}>
+			<a href="{{ path('proyecto_principal_archivo_listado') }}"> <i class="icon-double-angle-right"></i> Listado </a>
+		</li>
+	</ul>
+</li>
+<li {%if menu.seccion == 'Imagenes' %}class="active"{%endif%} >
+	<a href="#"> <i class="icon-camera-retro"></i> <span class="menu-text"> Imagenes </span> <b class="arrow icon-angle-down"></b> </a>
+	<ul class="submenu" style="display: block;">
+		<li {%if menu.subseccion == 'Nueva imagen' %}class="active"{%endif%}>
+			<a href="{{ path('proyecto_principal_imagen_nuevo') }}"> <i class="icon-double-angle-right"></i> Nueva </a>
+		</li>
+		<li {%if menu.subseccion == 'Listado de imagenes' %}class="active"{%endif%}>
+			<a href="{{ path('proyecto_principal_imagen_listado') }}"> <i class="icon-double-angle-right"></i> Listado </a>
+		</li>
+	</ul>
+</li>
+<li {%if menu.seccion == 'Correo' %}class="active"{%endif%} >
+	<a href="#"> <i class="icon-envelope"></i> <span class="menu-text"> Correo </span> <b class="arrow icon-angle-down"></b> </a>
+	<ul class="submenu" style="display: block;">
+		<!--<li {%if menu.seccion == 'Nueva Entrada' %}class="active"{%endif%}>
+			<a href="{{ path('proyecto_principal_acceso') }}"> <i class="icon-double-angle-right"></i> Nuevo </a>
+		</li>-->
+		<li {%if menu.subseccion == 'Listado de mensajes recibidos' %}class="active"{%endif%}>
+			<a href="{{ path('proyecto_principal_correo_listado') }}"> <i class="icon-double-angle-right"></i> Entrada </a>
+		</li>
+		<!--<li {%if menu.seccion == 'Listado Entradas' %}class="active"{%endif%}>
+			<a href="{{ path('proyecto_principal_registro') }}"> <i class="icon-double-angle-right"></i> Salida </a>
+		</li>-->
+	</ul>
+</li>
+{%endif%}
+<li {%if menu.seccion == 'Usuarios' %}class="active open"{%endif%}>
+	<a href="#" > <i class="icon-group"></i> <span class="menu-text"> Usuarios </span> <b class="arrow icon-angle-down"></b> </a>
+	<ul class="submenu" style="display: block;">
+		{%if user is null %}
+		<li {%if menu.subseccion == 'Acceso' %}class="active"{%endif%}>
+			<a href="{{ path('proyecto_principal_acceso') }}"> <i class="icon-double-angle-right"></i> Acceso </a>
+		</li>
+		<li {%if menu.subseccion == 'Registro' %}class="active"{%endif%}>
+			<a href="{{ path('proyecto_principal_registro') }}"> <i class="icon-double-angle-right"></i> Registro </a>
+		</li>
+		{%endif%}
+		{%if user is not null %}
+		<li {%if menu.subseccion == 'Mi Perfil' %}class="active"{%endif%}>
+			<a href="{{ path('proyecto_principal_perfil') }}"> <i class="icon-double-angle-right"></i> Perfil </a>
+		</li>
+		<li >
+			<a href="{{ path('proyecto_principal_cerrarsesion') }}"> <i class="icon-double-angle-right"></i> Cerrar sesi&oacute;n </a>
+		</li>
+		{%endif%}
+	</ul>
+</li>

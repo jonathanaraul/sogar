@@ -1,0 +1,77 @@
+<?php
+
+namespace Proyecto\PrincipalBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Data
+ *
+ * @ORM\Table(name="data")
+ * @ORM\Entity
+ */
+class Data
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="user", type="integer", nullable=false)
+     */
+    private $user;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titulo", type="text", nullable=false)
+     */
+    private $titulo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mensaje", type="text", nullable=false)
+     */
+    private $mensaje;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adjunto", type="text", nullable=true)
+     */
+    private $adjunto;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha", type="datetime", nullable=false)
+     */
+    private $fecha;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="habilitado", type="boolean", nullable=true)
+     */
+    private $habilitado;
+
+    /**
+     * @var \Categoria
+     *
+     * @ORM\ManyToOne(targetEntity="Categoria")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="categoria", referencedColumnName="id")
+     * })
+     */
+    private $categoria;
+
+
+}

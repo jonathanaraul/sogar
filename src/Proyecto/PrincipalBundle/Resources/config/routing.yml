@@ -1,0 +1,75 @@
+proyecto_principal_homepage:
+    pattern:  /
+    defaults: { _controller: ProyectoPrincipalBundle:Default:index }
+proyecto_principal_validacion:
+    pattern:  /validacion
+login:
+    pattern:   /login
+    defaults:  { _controller: AcmeSecurityBundle:Security:login }
+login_check:
+    pattern:   /login_check
+
+proyecto_principal_acceso:
+    pattern:  /acceso
+    defaults: { _controller: ProyectoPrincipalBundle:Users:acceso }
+proyecto_principal_registro:
+    pattern:  /registro
+    defaults: { _controller: ProyectoPrincipalBundle:Users:registro }
+proyecto_principal_cuenta_guardar:
+    pattern:  /cuenta/guardar
+    defaults: { _controller: ProyectoPrincipalBundle:Users:cuentaGuardar }
+    requirements:
+      _method: POST
+proyecto_principal_cerrarsesion:
+    pattern:  /logout
+    defaults: { _controller: ProyectoPrincipalBundle:Users:acceso }
+proyecto_principal_perfil:
+    pattern:  /perfil
+    defaults: { _controller: ProyectoPrincipalBundle:Users:perfil }
+proyecto_principal_elimina_objeto:
+    pattern:  /elimina/
+    defaults: { _controller: ProyectoPrincipalBundle:Default:eliminar }
+    requirements:
+      _method: POST
+proyecto_principal_modifica_objeto:
+    pattern:  /modifica/
+    defaults: { _controller: ProyectoPrincipalBundle:Default:modificar }
+    requirements:
+      _method: POST
+
+proyecto_principal_entrada_nuevo:
+    pattern:  /entrada/nueva
+    defaults: { _controller: ProyectoPrincipalBundle:Entrada:nuevo }
+proyecto_principal_entrada_editar:
+    pattern:  /entrada/editar/{id}
+    defaults: { _controller: ProyectoPrincipalBundle:Entrada:editar,id: '1' }
+proyecto_principal_entrada_listado:
+    pattern:  /entrada/listado
+    defaults: { _controller: ProyectoPrincipalBundle:Entrada:listado }
+
+proyecto_principal_archivo_nuevo:
+    pattern:  /archivo/nuevo
+    defaults: { _controller: ProyectoPrincipalBundle:Archivo:nuevo }
+proyecto_principal_arhivo_editar:
+    pattern:  /archivo/editar/{id}
+    defaults: { _controller: ProyectoPrincipalBundle:Archivo:editar,id: '1' }
+proyecto_principal_archivo_listado:
+    pattern:  /archivo/listado
+    defaults: { _controller: ProyectoPrincipalBundle:Archivo:listado }
+
+proyecto_principal_imagen_nuevo:
+    pattern:  /imagen/nueva
+    defaults: { _controller: ProyectoPrincipalBundle:Imagen:nuevo }
+proyecto_principal_imagen_editar:
+    pattern:  /imagen/editar/{id}
+    defaults: { _controller: ProyectoPrincipalBundle:Imagen:editar,id: '1' }
+proyecto_principal_imagen_listado:
+    pattern:  /imagen/listado
+    defaults: { _controller: ProyectoPrincipalBundle:Imagen:listado }
+
+proyecto_principal_correo_listado:
+    pattern:  /correo/listado
+    defaults: { _controller: ProyectoPrincipalBundle:Correo:listado }
+proyecto_principal_correo_leer:
+    pattern:  /correo/leer/{id}
+    defaults: { _controller: ProyectoPrincipalBundle:Correo:leer,id: '1' }
