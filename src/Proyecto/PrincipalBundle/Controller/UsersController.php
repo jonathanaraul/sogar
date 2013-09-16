@@ -48,13 +48,19 @@ class UsersController extends Controller {
 		$nombreusuario = trim($post -> get("nombredeusuario"));
 		$contrasenia = $post -> get("password");
 		$contrasenia2 = $post -> get("password2");
-		$sexo = intval($post -> get("sexomasculino"));
+		$sexo = $post -> get("sexomasculino");
 		$email = $post -> get("email");
 		$descripcion = htmlentities(addslashes($post -> get("descripcion")));
 		$path = "images/avatar-man.png";
 
-		if ($sexo == 1)
+		if ($sexo == 'false'){
 			$path = "images/avatar-woman.png";
+			$sexo = 1;
+		}
+		else{
+			$sexo = 0;
+		}
+		
 
 		$estado = StringUtils::equals($contrasenia, $contrasenia2);
 		if ($estado == true)
