@@ -1,0 +1,52 @@
+<header>
+	<!-- Logo + menu -->
+	<div class="logoWrapper">
+		<div class="row">
+			<!-- logo - font -->
+			<div class="span6 logo">
+				<span class="logoFirst">R</span><a href="index.html">ICHY</a>
+				<span class="small">build under bootstrap system</span>
+			</div>
+			<!-- SOCIALS -->
+			<div class="span6">
+				<ul class="tooltip-title top-social">
+					<li>
+						<a href="#" rel="tooltip" title="Facebook" class="social1-top"></a>
+					</li>
+					<li>
+						<a href="#" rel="tooltip" title="Twitter" class="social2-top"></a>
+					</li>
+					<li>
+						<a href="#" rel="tooltip" title="Google+" class="social3-top"></a>
+					</li>
+					<li>
+						<a href="#" rel="tooltip" title="Rss Feed" class="social4-top"></a>
+					</li>
+				</ul>
+			</div>
+			<!--/SOCIALS-->
+		</div><!--/row-->
+		<!-- STRAT MENU
+		============================================================ -->
+		<nav class="container menu">
+			<div class="row">
+				<div class="span9">
+					
+					{{ render(controller('ProyectoFrontBundle:Helpers:menu')) }}
+				</div>
+				<!-- search -->
+				<!--
+				<div class="span3 searchTop">
+					<form class="form-search pull-right marR10" />
+					<input type="text" class="input-medium search-query inputSearchStyle" value="Looking for somthing ?" onblur="if(this.value == '') { this.value = 'Looking for somthing ?'; }" onfocus="if(this.value == 'Looking for somthing ?') { this.value = ''; }" />
+					<button type="submit" class="search-btn">
+						<i class="icon-search"></i>
+					</button>
+					</form>
+				</div>-->
+				<!-- /search -->
+			</div><!--/row-->
+		</nav>
+		<!--/MENU-->
+	</div><!--/logoWrapper-->
+</header>

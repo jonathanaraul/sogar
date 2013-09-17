@@ -1,0 +1,26 @@
+{% extends "ProyectoFrontBundle:Helpers:base.html.twig" %}
+{%block body%}
+<body onload="prettyPrint()">
+	<div id="wrap" class="boxed">
+		<div class="container">
+			<!-- Header
+			=========================================================================================================== -->
+			{% include 'ProyectoFrontBundle:Helpers:encabezado.html.twig' %} <!-- Content
+			============================================================================================================== -->
+			{%block contenido%}
+			{%endblock%}
+		</div>
+		<!--/container-->
+		<!-- Footer
+		============================================================================================================= -->
+		<div class="container darkBg">
+			{% include 'ProyectoFrontBundle:Helpers:piepagina.html.twig' %}
+		</div><!--/container-->
+	</div><!--/wrap-->
+	<!-- Start Style Switcher -->
+	<!-- End Style Switcher -->
+	<!-- javascript
+	============================================================================================================= -->
+	{% include 'ProyectoFrontBundle:Helpers:scripts.html.twig' %}
+</body>
+{%endblock%}

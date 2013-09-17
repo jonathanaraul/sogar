@@ -1,3 +1,19 @@
 proyecto_front_homepage:
     pattern:  /
     defaults: { _controller: ProyectoFrontBundle:Default:index }
+proyecto_front_organizacion:
+    pattern:  /organizacion
+    defaults: { _controller: ProyectoFrontBundle:Default:organizacion }
+proyecto_front_informacion:
+    pattern:  /informacion
+    defaults: { _controller: ProyectoFrontBundle:Default:informacion }
+proyecto_front_descargas:
+    pattern:  /descargas
+    defaults: { _controller: ProyectoFrontBundle:Default:descargas }
+proyecto_front_descargas_categoria:
+    pattern:  /descargas/categoria/{id}
+    defaults: { _controller: ProyectoFrontBundle:Default:descargaCategoria,id: '1' }
+proyecto_front_contacto:
+    pattern:  /contacto
+    defaults: { _controller: ProyectoFrontBundle:Default:contacto }
+

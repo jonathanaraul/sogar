@@ -1,0 +1,36 @@
+<ul id="jMenu">
+	<li>
+		<a href="{{path('proyecto_front_homepage')}}" class="fNiv active">Home
+		<br />
+		<span class="smallText">General</span></a>
+	</li>
+	<li>
+		<a href="{{path('proyecto_front_organizacion')}}" class="fNiv">La Organizaci&oacute;n
+		<br />
+		<span class="smallText">Sobre nosotros</span></a>
+	</li>
+	<li>
+		<a href="{{path('proyecto_front_informacion')}}"  class="fNiv">Informaci&oacute;n
+		<br />
+		<span class="smallText">Noticias varias</span></a>
+	</li>
+
+	<li>
+		<a href="{{path('proyecto_front_descargas')}}" class="fNiv">Descargas
+		<br />
+		<span class="smallText">Planillas / Formatos</span></a>
+		<ul>
+			{%for elemento in elementos%}
+			<li>
+				<a href="{{elemento.url}}">{{elemento.titulo}}</a>
+			</li>
+			{%endfor%}
+		</ul>
+	</li>
+	<li>
+		<a href="{{path('proyecto_front_contacto')}}" class="fNiv last">Contacto
+		<br />
+		<span class="smallText">Env&iacute;e su mensaje</span></a>
+								
+	</li>
+</ul>
