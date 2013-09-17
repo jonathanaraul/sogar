@@ -4,8 +4,8 @@
 		<div class="row">
 			<!-- logo - font -->
 			<div class="span6 logo">
-				<span class="logoFirst">R</span><a href="index.html">ICHY</a>
-				<span class="small">build under bootstrap system</span>
+				<span class="logoFirst">S</span><a href="index.html">NGR</a>
+				<span class="small">Sociedad Nacional de Garant&iacute;as Rec&iacute;procas</span>
 			</div>
 			<!-- SOCIALS -->
 			<div class="span6">
@@ -31,8 +31,7 @@
 		<nav class="container menu">
 			<div class="row">
 				<div class="span9">
-					
-					{{ render(controller('ProyectoFrontBundle:Helpers:menu')) }}
+					{% include 'ProyectoFrontBundle:Helpers:menu.html.twig' with {'menu': menu} %}
 				</div>
 				<!-- search -->
 				<!--

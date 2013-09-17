@@ -1,0 +1,20 @@
+{% extends "ProyectoFrontBundle:Helpers:body.html.twig" %}
+
+{%block contenido%}
+{%for object in objects%}
+<div class="page-header">
+	<h1>{{object.titulo}}</h1>
+</div>
+<section id="why">
+	{%for download in downloads if download.categoria.titulo == object.titulo%}
+		{%if loop.index0 == 0 %}<div class="row">
+		{%elseif loop.index0 % 3 ==0%}</div><div class="row">{%endif%}
+
+		<div class="span4">
+			<h3><i class="icon-download-alt icon-large"></i><a href="{{ asset(''~ download.getWebPath~'') }}" target="_blank">{{download.titulo|title}}</a></h3>
+			{{download.mensaje|title}}
+		</div>
+	{%endfor%}
+</section>
+{%endfor%}
+{%endblock%} 

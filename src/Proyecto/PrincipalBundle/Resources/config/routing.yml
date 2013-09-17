@@ -50,7 +50,7 @@ proyecto_principal_entrada_listado:
 proyecto_principal_archivo_nuevo:
     pattern:  /archivo/nuevo
     defaults: { _controller: ProyectoPrincipalBundle:Archivo:nuevo }
-proyecto_principal_arhivo_editar:
+proyecto_principal_archivo_editar:
     pattern:  /archivo/editar/{id}
     defaults: { _controller: ProyectoPrincipalBundle:Archivo:editar,id: '1' }
 proyecto_principal_archivo_listado:

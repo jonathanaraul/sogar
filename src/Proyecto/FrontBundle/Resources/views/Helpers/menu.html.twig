@@ -1,34 +1,27 @@
 <ul id="jMenu">
 	<li>
-		<a href="{{path('proyecto_front_homepage')}}" class="fNiv active">Home
+		<a href="{{path('proyecto_front_homepage')}}" class="fNiv {%if menu == 'inicio'%}active{%endif%}">Inicio
 		<br />
 		<span class="smallText">General</span></a>
 	</li>
 	<li>
-		<a href="{{path('proyecto_front_organizacion')}}" class="fNiv">La Organizaci&oacute;n
+		<a href="{{path('proyecto_front_organizacion')}}" class="fNiv {%if menu == 'organizacion'%}active{%endif%}">La Organizaci&oacute;n
 		<br />
 		<span class="smallText">Sobre nosotros</span></a>
 	</li>
 	<li>
-		<a href="{{path('proyecto_front_informacion')}}"  class="fNiv">Informaci&oacute;n
+		<a href="{{path('proyecto_front_informacion')}}"  class="fNiv {%if menu == 'informacion'%}active{%endif%}">Informaci&oacute;n
 		<br />
 		<span class="smallText">Noticias varias</span></a>
 	</li>
 
 	<li>
-		<a href="{{path('proyecto_front_descargas')}}" class="fNiv">Descargas
+		<a href="{{path('proyecto_front_descargas')}}" class="fNiv {%if menu == 'descargas'%}active{%endif%}">Descargas
 		<br />
 		<span class="smallText">Planillas / Formatos</span></a>
-		<ul>
-			{%for elemento in elementos%}
-			<li>
-				<a href="{{elemento.url}}">{{elemento.titulo}}</a>
-			</li>
-			{%endfor%}
-		</ul>
 	</li>
 	<li>
-		<a href="{{path('proyecto_front_contacto')}}" class="fNiv last">Contacto
+		<a href="{{path('proyecto_front_contacto')}}" class="fNiv {%if menu == 'contacto'%}active{%endif%} last">Contacto
 		<br />
 		<span class="smallText">Env&iacute;e su mensaje</span></a>
 								

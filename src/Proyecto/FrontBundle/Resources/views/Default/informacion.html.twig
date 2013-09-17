@@ -1,0 +1,67 @@
+{% extends "ProyectoFrontBundle:Helpers:body.html.twig" %}
+
+{%block contenido%}
+<div class="page-header">
+	<h1>Blog 3</h1>
+</div>
+<div class="row">
+	<!-- Left content
+	==============================================================================================================-->
+	<div class="span12">
+		<!-- blog item
+		===========================-->
+		<div class="outerDiv">
+			<div class="row">
+				<!-- left part -->
+				<div class="span1">
+					<div class="day color-bg">
+						28
+					</div>
+					<div class="month padT10 padB10">
+						sep
+					</div>
+				</div>
+				<!-- /left part -->
+				<!-- right part -->
+				<div class="span11">
+					<!-- slider -->
+					<div class="marB20">
+						<div class="myCarousel carousel slide marB0">
+							<!-- Carousel items -->
+							<div class="carousel-inner">
+								<div class="item active">
+									<a href="blog_details.html"><img alt="" src="{{ asset('front/images/img/img16.jpg') }}"></a>
+								</div>
+							</div>
+							<!-- Carousel nav -->
+						</div>
+					</div>
+					<!-- /slider -->
+					<!-- Title -->
+					<h3 class="noBg marB10"><a href="blog_details.html">Aenean sit amet ligula est</a></h3>
+					<!-- Options -->
+					<div class="blogOptions">
+						<span><i class="icon-user"></i> Ahmed Taha</span>
+						<span><i class="icon-comment"></i> 15 comments</span>
+						<span><i class="icon-time"></i> 30/12/2014</span>
+						<span><i class="icon-folder-open"></i> design ,graphic</span>
+					</div>
+					<!-- /Options -->
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec egestas nibh. Sed at rhoncus lectus. Maecenas ligula purus, hendrerit eu eleifend eu, faucibus eget erat. Praesent tempor molestie nisi eget hendrerit. Mauris turpis arcu, rhoncus in interdum sit amet, scelerisque et elit. Maecenas vitae diam feugiat velit mollis auctor. Aliquam tristique nunc ac sapien viverra nec mattis tellus tincidunt. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+					</p>
+					<a class="btn btn-large color-bg marT10" href="blog_details.html">Details</a>
+				</div><!--/right part-->
+			</div>
+		</div>
+		<!--/blog item-->
+		<!-- blog item
+		===========================-->
+		<!--/blog item-->
+	</div>
+	<!--/Left content-->
+	<!-- aside
+	==============================================================================================================-->
+	<!--/aside-->
+</div>
+{%endblock%} 

@@ -1,6 +1,6 @@
 proyecto_front_homepage:
     pattern:  /
-    defaults: { _controller: ProyectoFrontBundle:Default:index }
+    defaults: { _controller: ProyectoFrontBundle:Default:inicio }
 proyecto_front_organizacion:
     pattern:  /organizacion
     defaults: { _controller: ProyectoFrontBundle:Default:organizacion }
