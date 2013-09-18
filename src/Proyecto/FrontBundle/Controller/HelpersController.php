@@ -12,9 +12,47 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Proyecto\PrincipalBundle\Entity\User;
+use Proyecto\PrincipalBundle\Entity\Data;
+use Proyecto\PrincipalBundle\Entity\Categoria;
 
 class HelpersController extends Controller
 {
+    public function ultimosArticulosAction($tipo,$titulo)
+    {
+    	$array = array('titulo'=>$titulo );
+	
+		$em = $this->getDoctrine()->getManager();
+		
+		$query = $em -> createQuery('SELECT d
+    								 FROM ProyectoPrincipalBundle:Data d,
+    	 								  ProyectoPrincipalBundle:Categoria c
+   	 								 WHERE d.categoria = c.id AND
+   	 								       c.tipo = :tipo
+    								 ORDER BY d.fecha DESC') -> setParameter('tipo', $tipo);
+
+		$array['objects'] = $query -> getResult();
+		
+	
+        return $this->render('ProyectoFrontBundle:Helpers:ultimosarticulos.html.twig', $array);
+    }
+    public function galeriaAction($tipo,$titulo)
+    {
+    	$array = array('titulo'=>$titulo );
+	
+		$em = $this->getDoctrine()->getManager();
+		
+		$query = $em -> createQuery('SELECT d
+    								 FROM ProyectoPrincipalBundle:Data d,
+    	 								  ProyectoPrincipalBundle:Categoria c
+   	 								 WHERE d.categoria = c.id AND
+   	 								       c.titulo = :tipo
+    								 ORDER BY d.fecha ASC') -> setParameter('tipo', $tipo);
+
+		$array['objects'] = $query -> getResult();
+		
+	
+        return $this->render('ProyectoFrontBundle:Helpers:galeria.html.twig', $array);
+    }
 
     public function slideshowAction()
     {

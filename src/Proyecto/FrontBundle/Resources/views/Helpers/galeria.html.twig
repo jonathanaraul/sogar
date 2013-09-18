@@ -1,0 +1,24 @@
+<section class="outerDiv">
+	<h2>{{titulo}}</h2>
+	<div class="row">
+		<!-- Flex Carousel -->
+		<div class="flexslider carousel span12">
+			<ul class="gallery clearfix slides">
+				{%for object in objects%}
+				<li class="view2">
+					<img alt="" src="{{ asset(''~ object.getWebPath~'') }}" />
+					<!--<div class="mask2">
+						<h3>Project Name</h3>
+						<span>By: Jhon reaf</span>
+						<br />
+						<a href="images/img/img77.jpg" rel="prettyPhoto[gallery2]" title="slideshow"> <i class="icon-search"></i> </a>
+						<a href="single_project.html" title="More info"> <i class="icon-link"></i> </a>
+					</div>-->
+					<span class="depts2">{{object.titulo}}</span>
+				</li>				
+				{%endfor%}
+
+			</ul>
+		</div>
+	</div><!--/row-->
+</section><!--/Lates Projects-->

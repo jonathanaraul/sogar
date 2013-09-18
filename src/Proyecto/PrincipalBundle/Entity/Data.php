@@ -5,7 +5,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Proyecto\PrincipalBundle\Entity\Categoria;
 /**
  * Data
  *
@@ -147,6 +147,28 @@ class Data {
 		}
 	}
 
+	public function getMes(){
+		$mes = intval($this->fecha -> format('m')) - 1;
+
+		$meses =array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+		
+		return $meses[$mes];
+	}
+	public function getTextoCorto($dimension){
+		 $texto =  $this->mensaje;
+		 $final = '';
+		 $auxiliares = explode(' ', $texto);
+		 
+		 for ($i=0; $i < count($auxiliares) ; $i++) {
+			 	 
+			 $final.= " ".$auxiliares[$i];
+			 if($dimension < strlen($final)) break;
+		 }
+		 
+		 
+		 $final.= '...';
+		 return $final;
+	}
 	/**
 	 * Get file.
 	 *

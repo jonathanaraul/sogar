@@ -1,0 +1,69 @@
+{% extends "ProyectoFrontBundle:Helpers:body.html.twig" %}
+
+{%block contenido%}
+<div class="page-header">
+	<h1>{% autoescape false %}{{titulo}}{% endautoescape %}</h1>
+</div>
+<div class="row">
+	<!-- Left content
+	==============================================================================================================-->
+	<div class="span12">
+		<!-- blog item
+		===========================-->
+		{%for object in objects%}
+		<div class="outerDiv">
+			<div class="row">
+				<!-- left part -->
+				<div class="span1">
+					<div class="day color-bg">
+						{{object.fecha.format('d')}}
+					</div>
+					<div class="month padT10 padB10">
+						{{object.getMes}}
+					</div>
+				</div>
+				<!-- /left part -->
+				<!-- right part -->
+				<div class="span11">
+					<!-- slider -->
+					<div class="marB20">
+						<div class="myCarousel carousel slide marB0">
+							<!-- Carousel items -->
+							<div class="carousel-inner">
+								<div class="item active">
+									<a href="{{ path(ruta, {'id': object.getId}) }}"><img alt="" src="{{ asset(''~ object.getWebPath ~'') }}"></a>
+								</div>
+							</div>
+							<!-- Carousel nav -->
+						</div>
+					</div>
+					<!-- /slider -->
+					<!-- Title -->
+					<h3 class="noBg marB10"><a href="blog_details.html">{{object.titulo}}</a></h3>
+					<!-- Options -->
+					<div class="blogOptions">
+						<span><i class="icon-user"></i> {{object.user.nombre |title}} {{object.user.apellido |title}}</span>
+						
+						<span><i class="icon-time"></i> {{object.fecha.format('d/m/Y')}}</span>
+						<span><i class="icon-folder-open"></i> {{object.categoria.titulo|title}}</span>
+					</div>
+					<!-- /Options -->
+					<p>
+						{{object.getTextoCorto(495)}}
+					</p>
+					<a class="btn btn-large color-bg marT10" href="{{ path(ruta, {'id': object.getId}) }}">Leer m&aacute;s</a>
+				</div><!--/right part-->
+			</div>
+		</div>
+		{%endfor%}
+		<!--/blog item-->
+		<!-- blog item
+		===========================-->
+		<!--/blog item-->
+	</div>
+	<!--/Left content-->
+	<!-- aside
+	==============================================================================================================-->
+	<!--/aside-->
+</div>
+{%endblock%} 

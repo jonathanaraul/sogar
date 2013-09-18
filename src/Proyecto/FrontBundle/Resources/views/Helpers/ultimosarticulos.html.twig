@@ -1,0 +1,25 @@
+<div class="row outerDiv">
+	<!-- Latest from blog -->
+	<section class="span12 latestBlog">
+		<h2>{% autoescape false %}{{titulo}}{% endautoescape %}</h2>
+		<!-- Flex Carousel -->
+		<div class="flexslider carousel">
+			<ul class="slides tooltip-title">
+				{%for object in objects%}
+				<li>
+					<h4 class="marB5 noBg">
+					<div class="type-icon color-bg">
+						<i class="icon-file"></i>
+					</div><a href="{%if object.categoria.titulo== 'informacion'%}{{ path('proyecto_front_informacion_articulo', {'id': object.getId}) }}{%else%}{{ path('proyecto_front_organizacion_articulo', {'id': object.getId}) }}{%endif%}">{{object.titulo}}</a>
+					<br />
+					<span class="date">{{object.getMes}} {{object.fecha.format('d, Y')}}</span></h4>
+					<p>
+						{{object.getTextoCorto(300)}}
+						<a rel="tooltip" class="blogDetails" title="Details" href="{%if object.categoria.titulo== 'informacion'%}{{ path('proyecto_front_informacion_articulo', {'id': object.getId}) }}{%else%}{{ path('proyecto_front_organizacion_articulo', {'id': object.getId}) }}{%endif%}"><i class="icon-link"></i></a>
+					</p>
+				</li>
+				{%endfor%}
+			</ul>
+		</div>
+	</section><!--/Latest from blog-->
+</div><!--/row-->>

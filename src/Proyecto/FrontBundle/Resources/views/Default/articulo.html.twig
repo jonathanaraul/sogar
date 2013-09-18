@@ -1,0 +1,65 @@
+{% extends "ProyectoFrontBundle:Helpers:body.html.twig" %}
+
+{%block contenido%}
+<div class="page-header">
+	<h1>{{object.titulo}}</h1>
+</div>
+<div class="row">
+	<!-- Left content
+	==============================================================================================================-->
+	<div class="span12">
+		<!-- blog item
+		===========================-->
+		<div class="outerDiv">
+			<div class="row">
+				<!-- left part -->
+				<div class="span1">
+					<div class="day color-bg">
+						{{object.fecha.format('d')}}
+					</div>
+					<div class="month padT10 padB10">
+						{{object.getMes}}
+					</div>
+				</div>
+				<!-- /left part -->
+				<!-- right part -->
+				<div class="span11">
+					<!-- slider -->
+					<div class="marB20">
+						<div class="myCarousel carousel slide marB0">
+							<!-- Carousel items -->
+							<div class="carousel-inner">
+								<div class="item active">
+									<a href="blog_details.html"><img alt="" src="{{ asset(''~ object.getWebPath ~'') }}"></a>
+								</div>
+							</div>
+							<!-- Carousel nav -->
+						</div>
+					</div>
+					<!-- /slider -->
+					<!-- Title -->
+					
+					<!-- Options -->
+					<div class="blogOptions">
+						<span><i class="icon-user"></i> {{object.user.nombre |title}} {{object.user.apellido |title}}</span>
+						<span><i class="icon-time"></i> {{object.fecha.format('d/m/Y')}}</span>
+						<span><i class="icon-folder-open"></i> {{object.categoria.titulo|title}}</span>
+					</div>
+					<!-- /Options -->
+					<p>
+						{{object.getMensaje}}
+					</p>
+				</div><!--/right part-->
+			</div>
+		</div>
+		<!--/blog item-->
+		<!-- blog item
+		===========================-->
+		<!--/blog item-->
+	</div>
+	<!--/Left content-->
+	<!-- aside
+	==============================================================================================================-->
+	<!--/aside-->
+</div>
+{%endblock%} 
