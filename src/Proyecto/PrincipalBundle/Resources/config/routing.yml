@@ -20,9 +20,6 @@ proyecto_principal_cuenta_guardar:
     defaults: { _controller: ProyectoPrincipalBundle:Users:cuentaGuardar }
     requirements:
       _method: POST
-proyecto_principal_cerrarsesion:
-    pattern:  /logout
-    defaults: { _controller: ProyectoPrincipalBundle:Users:acceso }
 proyecto_principal_perfil:
     pattern:  /perfil
     defaults: { _controller: ProyectoPrincipalBundle:Users:perfil }

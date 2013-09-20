@@ -9,11 +9,11 @@ use Proyecto\PrincipalBundle\Entity\Categoria;
 /**
  * Data
  *
- * @ORM\Table(name="data")
+ * @ORM\Table(name="entrada")
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  */
-class Data {
+class Entrada {
 	/**
 	 * @var integer
 	 *
@@ -22,24 +22,18 @@ class Data {
 	 * @ORM\GeneratedValue(strategy="IDENTITY")
 	 */
 	private $id;
-
-	/**
-	 * @var \User
-	 *
-	 * @ORM\ManyToOne(targetEntity="User")
-	 * @ORM\JoinColumns({
-	 *   @ORM\JoinColumn(name="user", referencedColumnName="id")
-	 * })
-	 */
-	private $user;
-
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="titulo", type="text", nullable=false)
+	 * @ORM\Column(name="nombre", type="text", nullable=false)
 	 */
-	private $titulo;
-
+	private $nombre;
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="email", type="text", nullable=false)
+	 */
+	private $email;
 	/**
 	 * @var string
 	 *
@@ -64,10 +58,16 @@ class Data {
 	/**
 	 * @var boolean
 	 *
-	 * @ORM\Column(name="habilitado", type="boolean", nullable=true)
+	 * @ORM\Column(name="leido", type="boolean", nullable=true)
 	 */
-	private $habilitado;
+	private $leido;
 
+	/**
+	 * @var boolean
+	 *
+	 * @ORM\Column(name="respondido", type="boolean", nullable=true)
+	 */
+	private $respondido;
 	/**
 	 * @var \Categoria
 	 *
@@ -116,24 +116,45 @@ class Data {
 	}
 
 	/**
-	 * Set titulo
+	 * Set nombre
 	 *
-	 * @param string $titulo
+	 * @param string $nombre
 	 * @return Data
 	 */
-	public function setTitulo($titulo) {
-		$this -> titulo = $titulo;
+	public function setNombre($nombre) {
+		$this -> nombre = $nombre;
 
 		return $this;
 	}
 
 	/**
-	 * Get titulo
+	 * Get nombre
 	 *
 	 * @return string
 	 */
-	public function getTitulo() {
-		return $this -> titulo;
+	public function getNombre() {
+		return $this -> nombre;
+	}
+	
+	/**
+	 * Set nombre
+	 *
+	 * @param string $email
+	 * @return Data
+	 */
+	public function setEmail($email) {
+		$this -> email = $email;
+
+		return $this;
+	}
+
+	/**
+	 * Get nombre
+	 *
+	 * @return string
+	 */
+	public function getEmail() {
+		return $this -> email;
 	}
 
 	/**
@@ -200,24 +221,45 @@ class Data {
 	}
 
 	/**
-	 * Set habilitado
+	 * Set leido
 	 *
-	 * @param boolean $habilitado
+	 * @param boolean $leido
 	 * @return Data
 	 */
-	public function setHabilitado($habilitado) {
-		$this -> habilitado = $habilitado;
+	public function setLeido($leido) {
+		$this -> leido = $leido;
 
 		return $this;
 	}
 
 	/**
-	 * Get habilitado
+	 * Get leido
 	 *
 	 * @return boolean
 	 */
-	public function getHabilitado() {
-		return $this -> habilitado;
+	public function getLeido() {
+		return $this -> leido;
+	}
+
+	/**
+	 * Set respondido
+	 *
+	 * @param boolean $respondido
+	 * @return Data
+	 */
+	public function setRespondido($respondido) {
+		$this -> respondido = $respondido;
+
+		return $this;
+	}
+
+	/**
+	 * Get respondido
+	 *
+	 * @return boolean
+	 */
+	public function getRespondido() {
+		return $this -> respondido;
 	}
 
 	/**
@@ -345,18 +387,18 @@ class Data {
 	}
 
 	protected function getUploadDir() {
-		$directorio = 'subidas';
+		$directorio = 'entrada';
 		// get rid of the __DIR__ so it doesn't screw up
 		// when displaying uploaded doc/image in the view.
-		if ($this -> categoria -> getTipo() == 0)
+		/*if ($this -> categoria -> getTipo() == 0)
 			$directorio = 'entradas';
 		else if ($this -> categoria -> getTipo() == 1)
 			$directorio = 'archivos';
 		else if ($this -> categoria -> getTipo() == 2)
 			$directorio = 'imagenes';
 		else if ($this -> categoria -> getTipo() == 3)
-			$directorio = 'correo';
+			$directorio = 'correo';*/
 
-		return 'uploads/' . $directorio;
+		return 'front/uploads/' . $directorio;
 	}
 }

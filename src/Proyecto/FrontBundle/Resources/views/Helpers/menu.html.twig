@@ -14,16 +14,38 @@
 		<br />
 		<span class="smallText">Noticias varias</span></a>
 	</li>
-
 	<li>
 		<a href="{{path('proyecto_front_descargas')}}" class="fNiv {%if menu == 'descargas'%}active{%endif%}">Descargas
 		<br />
 		<span class="smallText">Planillas / Formatos</span></a>
 	</li>
+	{%if usuario is null%}
+	<li>
+		<a href="{{path('proyecto_front_registro')}}" class="fNiv {%if menu == 'registro'%}active{%endif%} last">Registro
+		<br />
+		<span class="smallText">¡Crea tu cuenta!</span></a>
+	</li>
+	{%else%}
+	<li>
+		<a href="#" class="fNiv {%if menu == 'perfil'%}active{%endif%} last">Mi Perfil
+		<br />
+		<span class="smallText">Tu informaci&oacute;n personal</span></a>
+		<ul >
+			<li>
+				<a href="{{path('proyecto_front_perfil')}}">Editar Perfil</a>
+			</li>
+			<li>
+				<a href="{{path('proyecto_front_entrada')}}">Buz&oacute;n de entrada</a>
+			</li>
+			<li>
+				<a href="{{path('proyecto_front_cerrarsesion')}}">Cerrar sesi&oacute;n</a>
+			</li>
+		</ul>
+	</li>
+	{%endif%}
 	<li>
 		<a href="{{path('proyecto_front_contacto')}}" class="fNiv {%if menu == 'contacto'%}active{%endif%} last">Contacto
 		<br />
 		<span class="smallText">Env&iacute;e su mensaje</span></a>
-								
 	</li>
 </ul>

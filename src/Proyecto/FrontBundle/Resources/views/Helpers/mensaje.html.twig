@@ -1,0 +1,10 @@
+{% extends "ProyectoFrontBundle:Helpers:body.html.twig" %}
+
+{%block contenido%}
+<div class="page-header hero-unit">
+	<h1>{{titulo}}</h1>
+	<p>
+		{% autoescape false %}{{mensaje}}{% endautoescape %}
+	</p>
+</div>
+{%endblock%} 

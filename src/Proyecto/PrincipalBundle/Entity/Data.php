@@ -24,14 +24,14 @@ class Data {
 	private $id;
 
 	/**
-	 * @var \User
+	 * @var \Usuario
 	 *
-	 * @ORM\ManyToOne(targetEntity="User")
+	 * @ORM\ManyToOne(targetEntity="Usuario")
 	 * @ORM\JoinColumns({
-	 *   @ORM\JoinColumn(name="user", referencedColumnName="id")
+	 *   @ORM\JoinColumn(name="usuario", referencedColumnName="id")
 	 * })
 	 */
-	private $user;
+	private $usuario;
 
 	/**
 	 * @var string
@@ -82,131 +82,8 @@ class Data {
 	 * @Assert\File(maxSize="6000000")
 	 */
 	private $file;
-
 	private $temp;
 
-	/**
-	 * Sets file.
-	 *
-	 * @param UploadedFile $file
-	 */
-	public function setFile(UploadedFile $file = null) {
-		$this -> file = $file;
-		// check if we have an old image path
-		if (isset($this -> adjunto)) {
-			// store the old name to delete after the update
-			$this -> temp = $this -> adjunto;
-			$this -> adjunto = null;
-		} else {
-			$this -> adjunto = 'initial';
-		}
-	}
-
-	/**
-	 * @ORM\PrePersist()
-	 * @ORM\PreUpdate()
-	 */
-	public function preUpload() {
-		if (null !== $this -> getFile()) {
-			// do whatever you want to generate a unique name
-			$filename = sha1(uniqid(mt_rand(), true));
-			$this -> adjunto = $filename . '.' . $this -> getFile() -> guessExtension();
-		}
-	}
-
-	/**
-	 * @ORM\PostPersist()
-	 * @ORM\PostUpdate()
-	 */
-	public function upload() {
-		if (null === $this -> getFile()) {
-			return;
-		}
-
-		// if there is an error when moving the file, an exception will
-		// be automatically thrown by move(). This will properly prevent
-		// the entity from being persisted to the database on error
-		$this -> getFile() -> move($this -> getUploadRootDir(), $this -> adjunto);
-
-		// check if we have an old image
-		if (isset($this -> temp)) {
-			// delete the old image
-			unlink($this -> getUploadRootDir() . '/' . $this -> temp);
-			// clear the temp image path
-			$this -> temp = null;
-		}
-		$this -> file = null;
-	}
-
-	/**
-	 * @ORM\PostRemove()
-	 */
-	public function removeUpload() {
-		if ($file = $this -> getAbsolutePath()) {
-			unlink($file);
-		}
-	}
-
-	public function getMes(){
-		$mes = intval($this->fecha -> format('m')) - 1;
-
-		$meses =array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-		
-		return $meses[$mes];
-	}
-	public function getTextoCorto($dimension){
-		 $texto =  $this->mensaje;
-		 $final = '';
-		 $auxiliares = explode(' ', $texto);
-		 
-		 for ($i=0; $i < count($auxiliares) ; $i++) {
-			 	 
-			 $final.= " ".$auxiliares[$i];
-			 if($dimension < strlen($final)) break;
-		 }
-		 
-		 
-		 $final.= '...';
-		 return $final;
-	}
-	/**
-	 * Get file.
-	 *
-	 * @return UploadedFile
-	 */
-	public function getFile() {
-		return $this -> file;
-	}
-
-	public function getAbsolutePath() {
-		return null === $this -> adjunto ? null : $this -> getUploadRootDir() . '/' . $this -> adjunto;
-	}
-
-	public function getWebPath() {
-		return null === $this -> adjunto ? null : $this -> getUploadDir() . '/' . $this -> adjunto;
-	}
-
-	protected function getUploadRootDir() {
-		// the absolute directory path where uploaded
-		// documents should be saved
-		return __DIR__ . '/../../../../web/' . $this -> getUploadDir();
-	}
-
-	protected function getUploadDir() {
-		$directorio = 'subidas';
-		// get rid of the __DIR__ so it doesn't screw up
-		// when displaying uploaded doc/image in the view.
-		if ($this -> categoria -> getTipo() == 0)
-			$directorio = 'entradas';
-		else if ($this -> categoria -> getTipo() == 1)
-			$directorio = 'archivos';
-		else if ($this -> categoria -> getTipo() == 2)
-			$directorio = 'imagenes';
-		else if ($this -> categoria -> getTipo() == 3)
-			$directorio = 'correo';
-
-		return 'uploads/' . $directorio;
-	}
 
 	/**
 	 * Get id
@@ -218,24 +95,24 @@ class Data {
 	}
 
 	/**
-	 * Set user
+	 * Set usuario
 	 *
-	 * @param \Proyecto\PrincipalBundle\Entity\User $user
+	 * @param \Proyecto\PrincipalBundle\Entity\Usuario $usuario
 	 * @return Data
 	 */
-	public function setUser(\Proyecto\PrincipalBundle\Entity\User $user = null) {
-		$this -> user = $user;
+	public function setUsuario(\Proyecto\PrincipalBundle\Entity\Usuario $usuario = null) {
+		$this -> usuario = $usuario;
 
 		return $this;
 	}
 
 	/**
-	 * Get user
+	 * Get usuario
 	 *
-	 * @return \Proyecto\PrincipalBundle\Entity\User
+	 * @return \Proyecto\PrincipalBundle\Entity\Usuario
 	 */
-	public function getUser() {
-		return $this -> user;
+	public function getUsuario() {
+		return $this -> usuario;
 	}
 
 	/**
@@ -364,28 +241,122 @@ class Data {
 		return $this -> categoria;
 	}
 
-	/*
-	 public function upload()
-	 {
-	 // the file property can be empty if the field is not required
-	 if (null === $this->getFile()) {
-	 return;
-	 }
+	/**
+	 * Sets file.
+	 *
+	 * @param UploadedFile $file
+	 */
+	public function setFile(UploadedFile $file = null) {
+		$this -> file = $file;
+		// check if we have an old image path
+		if (isset($this -> adjunto)) {
+			// store the old name to delete after the update
+			$this -> temp = $this -> adjunto;
+			$this -> adjunto = null;
+		} else {
+			$this -> adjunto = 'initial';
+		}
+	}
 
-	 // use the original file name here but you should
-	 // sanitize it at least to avoid any security issues
+	/**
+	 * @ORM\PrePersist()
+	 * @ORM\PreUpdate()
+	 */
+	public function preUpload() {
+		if (null !== $this -> getFile()) {
+			// do whatever you want to generate a unique name
+			$filename = sha1(uniqid(mt_rand(), true));
+			$this -> adjunto = $filename . '.' . $this -> getFile() -> guessExtension();
+		}
+	}
 
-	 // move takes the target directory and then the
-	 // target filename to move to
-	 $this->getFile()->move(
-	 $this->getUploadRootDir(),
-	 $this->getFile()->getClientOriginalName()
-	 );
+	/**
+	 * @ORM\PostPersist()
+	 * @ORM\PostUpdate()
+	 */
+	public function upload() {
+		if (null === $this -> getFile()) {
+			return;
+		}
 
-	 // set the path property to the filename where you've saved the file
-	 $this->adjunto = $this->getFile()->getClientOriginalName();
+		// if there is an error when moving the file, an exception will
+		// be automatically thrown by move(). This will properly prevent
+		// the entity from being persisted to the database on error
+		$this -> getFile() -> move($this -> getUploadRootDir(), $this -> adjunto);
 
-	 // clean up the file property as you won't need it anymore
-	 $this->file = null;
-	 }*/
+		// check if we have an old image
+		if (isset($this -> temp)) {
+			// delete the old image
+			unlink($this -> getUploadRootDir() . '/' . $this -> temp);
+			// clear the temp image path
+			$this -> temp = null;
+		}
+		$this -> file = null;
+	}
+
+	/**
+	 * @ORM\PostRemove()
+	 */
+	public function removeUpload() {
+		if ($file = $this -> getAbsolutePath()) {
+			unlink($file);
+		}
+	}
+
+	public function getMes(){
+		$mes = intval($this->fecha -> format('m')) - 1;
+		$meses =array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+		return $meses[$mes];
+	}
+	
+	public function getTextoCorto($dimension){
+		 $texto =  $this->mensaje;
+		 $final = '';
+		 $auxiliares = explode(' ', $texto);
+		 
+		 for ($i=0; $i < count($auxiliares) ; $i++) { 	 
+			 $final.= " ".$auxiliares[$i];
+			 if($dimension < strlen($final)) break;
+		 }
+		 $final.= '...';
+		 return $final;
+	}
+	/**
+	 * Get file.
+	 *
+	 * @return UploadedFile
+	 */
+	public function getFile() {
+		return $this -> file;
+	}
+
+	public function getAbsolutePath() {
+		return null === $this -> adjunto ? null : $this -> getUploadRootDir() . '/' . $this -> adjunto;
+	}
+
+	public function getWebPath() {
+		return null === $this -> adjunto ? null : $this -> getUploadDir() . '/' . $this -> adjunto;
+	}
+
+	protected function getUploadRootDir() {
+		// the absolute directory path where uploaded
+		// documents should be saved
+		return __DIR__ . '/../../../../web/' . $this -> getUploadDir();
+	}
+
+	protected function getUploadDir() {
+		$directorio = 'subidas';
+		// get rid of the __DIR__ so it doesn't screw up
+		// when displaying uploaded doc/image in the view.
+		if ($this -> categoria -> getTipo() == 0)
+			$directorio = 'entradas';
+		else if ($this -> categoria -> getTipo() == 1)
+			$directorio = 'archivos';
+		else if ($this -> categoria -> getTipo() == 2)
+			$directorio = 'imagenes';
+		else if ($this -> categoria -> getTipo() == 3)
+			$directorio = 'correo';
+
+		return 'uploads/' . $directorio;
+	}
 }

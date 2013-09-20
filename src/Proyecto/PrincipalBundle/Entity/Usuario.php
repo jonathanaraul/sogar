@@ -1,18 +1,20 @@
 <?php
 
 namespace Proyecto\PrincipalBundle\Entity;
-
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 
 /**
- * Proyecto\PrincipalBundle\Entity\User
+ * Proyecto\PrincipalBundle\Entity\Usuario
  *
- * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="Proyecto\PrincipalBundle\Entity\UserRepository")
+ * @ORM\Table(name="usuario")
+ * @ORM\Entity(repositoryClass="Proyecto\PrincipalBundle\Entity\UsuarioRepository")
+ * @ORM\HasLifecycleCallbacks
  */
-class User implements UserInterface, \Serializable
+class Usuario implements UserInterface, \Serializable
 {
     /**
      * @ORM\Column(type="integer")
@@ -50,11 +52,10 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=60, unique=true)
      */
     private $email;
-
     /**
-     * @ORM\Column(name="sexo", type="boolean")
+     * @ORM\Column(name="jerarquia", type="boolean")
      */
-    private $sexo;
+    private $jerarquia;
     /**
      * @ORM\Column(name="is_active", type="boolean")
      */
@@ -70,12 +71,19 @@ class User implements UserInterface, \Serializable
      */
     public $descripcion;
 
+	/**
+	 * @Assert\File(maxSize="6000000")
+	 */
+	private $file;
+	private $temp;
 
     public function __construct()
     {
         $this->isActive = true;
+        $this->jerarquia  = false;
         $this->salt = md5(uniqid(null, true));
     }
+  
 
     /**
      * Get id
@@ -91,7 +99,7 @@ class User implements UserInterface, \Serializable
      * Set nombre
      *
      * @param string $nombre
-     * @return User
+     * @return Usuario
      */
     public function setNombre($nombre)
     {
@@ -114,7 +122,7 @@ class User implements UserInterface, \Serializable
      * Set apellido
      *
      * @param string $apellido
-     * @return User
+     * @return Usuario
      */
     public function setApellido($apellido)
     {
@@ -137,7 +145,7 @@ class User implements UserInterface, \Serializable
      * Set username
      *
      * @param string $username
-     * @return User
+     * @return Usuario
      */
     public function setUsername($username)
     {
@@ -160,7 +168,7 @@ class User implements UserInterface, \Serializable
      * Set salt
      *
      * @param string $salt
-     * @return User
+     * @return Usuario
      */
     public function setSalt($salt)
     {
@@ -183,7 +191,7 @@ class User implements UserInterface, \Serializable
      * Set password
      *
      * @param string $password
-     * @return User
+     * @return Usuario
      */
     public function setPassword($password)
     {
@@ -206,7 +214,7 @@ class User implements UserInterface, \Serializable
      * Set email
      *
      * @param string $email
-     * @return User
+     * @return Usuario
      */
     public function setEmail($email)
     {
@@ -226,33 +234,33 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set sexo
+     * Set jerarquia
      *
-     * @param boolean $sexo
-     * @return User
+     * @param boolean $jerarquia
+     * @return Usuario
      */
-    public function setSexo($sexo)
+    public function setJerarquia($jerarquia)
     {
-        $this->sexo = $sexo;
+        $this->jerarquia = $jerarquia;
     
         return $this;
     }
 
     /**
-     * Get sexo
+     * Get jerarquia
      *
      * @return boolean 
      */
-    public function getSexo()
+    public function getJerarquia()
     {
-        return $this->sexo;
+        return $this->jerarquia;
     }
 
     /**
      * Set isActive
      *
      * @param boolean $isActive
-     * @return User
+     * @return Usuario
      */
     public function setIsActive($isActive)
     {
@@ -275,7 +283,7 @@ class User implements UserInterface, \Serializable
      * Set path
      *
      * @param string $path
-     * @return User
+     * @return Usuario
      */
     public function setPath($path)
     {
@@ -298,7 +306,7 @@ class User implements UserInterface, \Serializable
      * Set descripcion
      *
      * @param string $descripcion
-     * @return User
+     * @return Usuario
      */
     public function setDescripcion($descripcion)
     {
@@ -316,12 +324,14 @@ class User implements UserInterface, \Serializable
     {
         return $this->descripcion;
     }
+	
     /**
      * @inheritDoc
      */
     public function getRoles()
     {
-        return array('ROLE_ADMIN');
+    	if($this->jerarquia== false) return array('ROLE_USER');
+		else  return array('ROLE_ADMIN');
     }
 
     /**
@@ -350,4 +360,107 @@ class User implements UserInterface, \Serializable
             $this->id,
         ) = unserialize($serialized);
     }
+	
+   /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        // check if we have an old image path
+        if (isset($this->path)) {
+            // store the old name to delete after the update
+            $this->temp = $this->path;
+            $this->path = null;
+        } else {
+            $this->path = 'initial';
+        }
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->getFile()) {
+            // do whatever you want to generate a unique name
+            $filename = sha1(uniqid(mt_rand(), true));
+            $this->path = $filename.'.'.$this->getFile()->guessExtension();
+        }
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        // if there is an error when moving the file, an exception will
+        // be automatically thrown by move(). This will properly prevent
+        // the entity from being persisted to the database on error
+        $this->getFile()->move($this->getUploadRootDir(), $this->path);
+
+        // check if we have an old image
+        if (isset($this->temp)) {
+            // delete the old image
+            unlink($this->getUploadRootDir().'/'.$this->temp);
+            // clear the temp image path
+            $this->temp = null;
+        }
+        $this->file = null;
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
+    }
+	/**
+	 * Get file.
+	 *
+	 * @return UploadedFile
+	 */
+	public function getFile() {
+		return $this -> file;
+	}
+
+ 	public function getAbsolutePath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadRootDir().'/'.$this->path;
+    }
+
+    public function getWebPath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadDir().'/'.$this->path;
+    }
+
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    protected function getUploadDir()
+    {
+        // get rid of the __DIR__ so it doesn't screw up
+        // when displaying uploaded doc/image in the view.
+        return 'general/avatars';
+    }
+
 }

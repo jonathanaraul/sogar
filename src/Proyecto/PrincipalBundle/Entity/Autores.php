@@ -22,14 +22,14 @@ class Autores
     private $id;
 
     /**
-     * @var \User
+     * @var \Usuario
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="Usuario")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="usuario", referencedColumnName="id")
      * })
      */
-    private $user;
+    private $usuario;
 
 
 
@@ -44,25 +44,25 @@ class Autores
     }
 
     /**
-     * Set user
+     * Set usuario
      *
-     * @param \Proyecto\PrincipalBundle\Entity\User $user
+     * @param \Proyecto\PrincipalBundle\Entity\Usuario $usuario
      * @return Autores
      */
-    public function setUser(\Proyecto\PrincipalBundle\Entity\User $user = null)
+    public function setUsuario(\Proyecto\PrincipalBundle\Entity\Usuario $usuario = null)
     {
-        $this->user = $user;
+        $this->usuario = $usuario;
     
         return $this;
     }
 
     /**
-     * Get user
+     * Get usuario
      *
-     * @return \Proyecto\PrincipalBundle\Entity\User 
+     * @return \Proyecto\PrincipalBundle\Entity\Usuario 
      */
-    public function getUser()
+    public function getUsuario()
     {
-        return $this->user;
+        return $this->usuario;
     }
 }

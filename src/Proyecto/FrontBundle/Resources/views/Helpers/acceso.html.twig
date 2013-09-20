@@ -1,0 +1,39 @@
+<div class="span4">
+	<h4>{%if acceso is not null%}Acceso{%else%}Bienvenido {{usuario.nombre|title}} {{usuario.apellido|title}}{%endif%}</h4>
+	<!-- <ul class="basicuse thumbs"></ul>Flickr Code -->
+	<div class="clearfix"></div>
+	<div class="subscribee">
+		{%if acceso is not null%}
+		
+			{% if acceso.error %}
+				No puede acceder al sistema, intente m&aacute;s tarde, o comun&iacute;quese con el administrador del sistema.
+			{%else%}
+				Accede a tu cuenta si no la tienes registrate <a href="{{path('proyecto_front_registro')}}">aqu&iacute;...</a>
+			{% endif %}
+			<br />
+			<form class="subscribe" action="{{ path('login_check') }}" method="post" />
+				<input class="inputSubscribe" type="text" placeholder="Nombre de usuario" name="_username"  value="{{ acceso.ultimo_nombreusuario}}"/>
+				<button class="btn btn-warning btnSubscribe" onclick="document.location.href = {{path('proyecto_front_registro')}}">
+					Registro
+				</button>
+				<input class="inputSubscribe" type="password" placeholder="Password" name="_password" />
+				<br/>
+				<input type="submit" class="btn btn-warning btnSubscribe" value="Acceder">
+			</form>
+		
+		{%else%}
+		
+		<button class="btn btn-warning btnSubscribe" onclick="document.location.href = '{{path('proyecto_front_perfil')}}'">
+					Editar perfil
+		</button>
+		
+		<button class="btn btn-warning btnSubscribe" onclick="document.location.href = '{{path('proyecto_front_entrada')}}'">
+					Buz&oacute;n de entrada
+		</button>
+		<button class="btn btn-warning btnSubscribe" onclick="document.location.href = '{{path('proyecto_front_cerrarsesion')}}'">
+					Cerrar sesi&oacute;n
+		</button>
+		
+		{%endif%}
+	</div>
+</div>

@@ -19,4 +19,18 @@ proyecto_front_descargas:
 proyecto_front_contacto:
     pattern:  /contacto
     defaults: { _controller: ProyectoFrontBundle:Default:contacto }
-
+proyecto_front_registro:
+    pattern:  /registro
+    defaults: { _controller: ProyectoFrontBundle:Users:registro }
+proyecto_front_perfil:
+    pattern:  /perfil
+    defaults: { _controller: ProyectoFrontBundle:Users:perfil }
+proyecto_front_entrada:
+    pattern:  /entrada
+    defaults: { _controller: ProyectoFrontBundle:Users:entrada }
+proyecto_front_validacion:
+    pattern:  /validacion
+    defaults: { _controller: ProyectoFrontBundle:Users:validacion }
+proyecto_front_cerrarsesion:
+    pattern:  /logout
+    defaults: { _controller: ProyectoFrontBundle:Default:inicio }

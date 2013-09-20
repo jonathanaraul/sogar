@@ -29,23 +29,7 @@
 				<div class="tweet"></div><!-- Twitter Code -->
 			</div>
 			<!-- Flickr -->
-			<div class="span4">
-				<h4>Acceso</h4>
-				
-				<!-- <ul class="basicuse thumbs"></ul>Flickr Code -->
-				<div class="clearfix"></div>
-				<div class="subscribee">
-					Subscribe to our e-mail newsletter to receive updates.
-					<br />
-					<br />
-					<form class="subscribe" />
-					<input class="inputSubscribe" type="text" placeholder="Enter Your Email" />
-					<button class="btn btn-warning btnSubscribe">
-						Send
-					</button>
-					</form>
-				</div>
-			</div>
+			{% include 'ProyectoFrontBundle:Helpers:acceso.html.twig' %}  
 		</div>
 		<!-- Copy rights + subscribtion area -->
 		<div class="row bord-top">

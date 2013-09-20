@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en">
+	<!--<![endif]-->
+<head>
+	<!-- Basic Page Needs -->
+	<meta charset="utf-8" />
+	<title>SNGR</title>
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- fav and touch icons
+	======================================================================================-->
+	<link rel="shortcut icon" href="{{ asset('front/images/favicon/favicon.ico') }}" />
+	<link rel="apple-touch-icon" href="{{ asset('front/images/favicon/apple-touch-icon.png') }}" />
+	<link rel="apple-touch-icon" sizes="72x72" href="{{ asset('front/images/favicon/apple-touch-icon-72x72.png') }}" />
+	<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('front/images/favicon/apple-touch-icon-114x114.png') }}" />
+	<!-- Start CSS Style
+	=======================================================================================-->
+	<link rel="stylesheet" href="{{ asset('front/css/style.css') }}" />
+	<!-- Main Style -->
+	<!--[if IE 7]>
+	<link rel="stylesheet" href="{{ asset('front/css/fontawesome/font-awesome-ie7.css') }}" />
+	<![endif]-->
+	<!-- Color Skins -->
+	<link rel="stylesheet" href="{{ asset('front/css/skins/blue.css') }}" name="skins" />
+	<!-- Layout Style -->
+	<link rel="stylesheet" href="{{ asset('front/css/layout/wide.css') }}" name="layout" />
+	<!-- Style Switcher Box -->
+	<link rel="stylesheet" href="{{ asset('front/css/layout/switcher.css') }}" />
+	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<link href="{{ asset('front/css/ie.css') }}" rel="stylesheet" />
+	<![endif]-->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+	
+<body onload="prettyPrint()">
+	<div id="wrap" class="boxed">
+		<div class="container">
+			<!-- Header
+			=========================================================================================================== -->
+			<header>
+	<!-- Logo + menu -->
+	<div class="logoWrapper">
+		<div class="row">
+			<!-- logo - font -->
+			<div class="span6 logo">
+				<span class="logoFirst">S</span><a href="index.html">NGR</a>
+				<span class="small">Sociedad Nacional de Garant&iacute;as Rec&iacute;procas</span>
+			</div>
+			<!-- SOCIALS -->
+			<div class="span6">
+				<ul class="tooltip-title top-social">
+					<li>
+						<a href="#" rel="tooltip" title="Facebook" class="social1-top"></a>
+					</li>
+					<li>
+						<a href="#" rel="tooltip" title="Twitter" class="social2-top"></a>
+					</li>
+					<li>
+						<a href="#" rel="tooltip" title="Google+" class="social3-top"></a>
+					</li>
+					<li>
+						<a href="#" rel="tooltip" title="Rss Feed" class="social4-top"></a>
+					</li>
+				</ul>
+			</div>
+			<!--/SOCIALS-->
+		</div><!--/row-->
+		<!-- STRAT MENU
+		============================================================ -->
+		<nav class="container menu">
+			<div class="row">
+				<div class="span9">
+					{% include 'ProyectoFrontBundle:Helpers:menu.html.twig' with {'menu': 'inicio'} %}
+				</div>
+				<!-- search -->
+				<!--
+				<div class="span3 searchTop">
+					<form class="form-search pull-right marR10" />
+					<input type="text" class="input-medium search-query inputSearchStyle" value="Looking for somthing ?" onblur="if(this.value == '') { this.value = 'Looking for somthing ?'; }" onfocus="if(this.value == 'Looking for somthing ?') { this.value = ''; }" />
+					<button type="submit" class="search-btn">
+						<i class="icon-search"></i>
+					</button>
+					</form>
+				</div>-->
+				<!-- /search -->
+			</div><!--/row-->
+		</nav>
+		<!--/MENU-->
+	</div><!--/logoWrapper-->
+</header>
+			<!-- Footer============================================================================================================== -->
+			
+    <div class="page-header">
+       <h1>P&aacute;gina no encontrada</h1>
+    </div>
+    
+    <div class="span8 offset2 notFound">
+       	<div class="row">
+            <span class="digit">404</span>
+            <div class="clearfix"></div>
+            <h4 class="unDigit">La pagina que busca no existe...</h4>
+            <div class="clearfix"></div>
+            <!-- Buttons -->
+            <div class="span6 offset1 centered"><a href="{{path('proyecto_front_homepage')}}" class="btn-large btn">BACK TO HOME</a></div>
+        </div>
+    </div>
+    
+
+		</div>
+		<!--/container-->
+		<!-- Footer
+		============================================================================================================= -->
+		<div class="container darkBg">
+			<footer>
+	<div id="mainFooter">
+		<div class="row">
+			<!-- About Us -->
+			<div class="span2">
+				<h4>Sobre nosotros</h4>
+				<p>
+					Somos una organización radicada en el estado monagas sin fines de lucro
+					que se encarga de proporcionar servicios a las empresas de la recion
+				</p>
+			</div>
+			<!-- Contacts -->
+			<div class="span2">
+				<h4>Contacto</h4>
+				<address>
+					<strong>SNGR</strong>
+					<br />
+					<i class="icon-tint"></i> C.C. Plaza Guarapiche
+					<br />
+					Maturin, Monagas, Venezuela
+					<br />
+					<i class="icon-phone"></i> (0291) 684-3455
+				</address>
+
+			</div>
+			<!-- Twitter -->
+			<div class="span4">
+				<h4>Twitter</h4>
+				<div class="tweet"></div><!-- Twitter Code -->
+			</div>
+			<!-- Flickr -->
+			<div class="span4">
+				<h4>Acceso</h4>
+				
+				<!-- <ul class="basicuse thumbs"></ul>Flickr Code -->
+				<div class="clearfix"></div>
+				<div class="subscribee">
+					Subscribe to our e-mail newsletter to receive updates.
+					<br />
+					<br />
+					<form class="subscribe" />
+					<input class="inputSubscribe" type="text" placeholder="Enter Your Email" />
+					<button class="btn btn-warning btnSubscribe">
+						Send
+					</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- Copy rights + subscribtion area -->
+		<div class="row bord-top">
+			<div class="span6 copyrights">
+				Copyright 2013  SNGR Todos los derechos reservados. 
+			</div>
+			<div class="span6">
+				<ul class="footer-social tooltip-title">
+					<li>
+						<a href="#" rel="tooltip" title="facebook"><i class="icon-facebook-sign"></i></a>
+					</li>
+					<li>
+						<a href="#" rel="tooltip" title="twitter"><i class="icon-twitter-sign"></i></a>
+					</li>
+					<li>
+						<a href="#" rel="tooltip" title="google plus"><i class="icon-google-plus-sign"></i></a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+	</div><!--/mainFooter-->
+</footer>
+
+		</div><!--/container-->
+	</div><!--/wrap-->
+	<!-- Start Style Switcher -->
+	<!-- End Style Switcher -->
+	<!-- javascript
+	============================================================================================================= -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="{{ asset('front/js/jquery.js') }}"></script><!-- Main JQuery -->
+	<script src="{{ asset('front/js/bootstrap.js') }}"></script><!-- Bootstrap Js main file -->
+	<script src="{{ asset('front/js/jquery.easing.1.3.js') }}"></script><!-- easing.1.3 -->
+	<script src="{{ asset('front/js/jquery.cookie.js') }}"></script><!-- cookie -->
+	<script src="{{ asset('front/js/jquery-ui-1.8.20.custom.min.js') }}"></script><!-- jquery-ui -->
+	<script src="{{ asset('front/js/responsive-menu.js') }}"></script><!-- Responsive menu -->
+	<script src="{{ asset('front/js/jMenu.jquery.js') }}"></script><!-- Nav menu -->
+	<script defer="" src="{{ asset('front/js/jquery.flexslider.js') }}"></script><!-- Flex Basic carousel -->
+	<script src="{{ asset('front/js/jquery.prettyPhoto.js') }}"></script><!-- PrettyPhoto -->
+	<script src="{{ asset('front/js/jquery.liquid-slider-0.1.js') }}"></script><!-- Testimonials - text slider -->
+	<script src="{{ asset('front/js/jquery.tweet.js') }}"></script><!-- Twitter plugin -->
+	<script src="{{ asset('front/js/jflickrfeed.min.js') }}"></script><!-- jQuery Flickr -->
+	<script src="{{ asset('front/js/jquery.ui.totop.js') }}"></script><!-- Go to top -->
+	<script src="{{ asset('front/js/filterable.pack.js') }}"></script><!-- Filter portfolio -->
+	<script src="{{ asset('front/js/audio.min.js') }}"></script><!-- audio player -->
+	<script src="{{ asset('front/js/prettify.js') }}"></script><!-- YOU CAN REMOVE IT // it's associated with shortcodes preview boxes -->
+	<script defer="" src="{{ asset('front/rs-plugin/js/jquery.themepunch.plugins.min.js') }}"></script><!--REVOLUTION SLIDER-->
+	<script defer="" src="{{ asset('front/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script><!--REVOLUTION SLIDER-->
+	<script src="{{ asset('front/js/custom.js') }}"></script><!-- All scripts that shuold be on html file collected here -->
+	<script src="{{ asset('front/js/styleswitch.js') }}"></script>
+	<!-- Style Colors Switcher -->
+
+</body>
+
+
+</html>
+
+
+

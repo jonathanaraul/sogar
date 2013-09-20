@@ -6,14 +6,15 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Proyecto\PrincipalBundle\Entity\Categoria;
+
 /**
- * Data
+ * Salida
  *
- * @ORM\Table(name="data")
+ * @ORM\Table(name="salida")
  * @ORM\Entity
- * @ORM\HasLifecycleCallbacks
  */
-class Data {
+class Salida
+{
 	/**
 	 * @var integer
 	 *
@@ -22,7 +23,6 @@ class Data {
 	 * @ORM\GeneratedValue(strategy="IDENTITY")
 	 */
 	private $id;
-
 	/**
 	 * @var \User
 	 *
@@ -32,13 +32,6 @@ class Data {
 	 * })
 	 */
 	private $user;
-
-	/**
-	 * @var string
-	 *
-	 * @ORM\Column(name="titulo", type="text", nullable=false)
-	 */
-	private $titulo;
 
 	/**
 	 * @var string
@@ -64,9 +57,9 @@ class Data {
 	/**
 	 * @var boolean
 	 *
-	 * @ORM\Column(name="habilitado", type="boolean", nullable=true)
+	 * @ORM\Column(name="visible", type="boolean", nullable=true)
 	 */
-	private $habilitado;
+	private $visible;
 
 	/**
 	 * @var \Categoria
@@ -113,27 +106,6 @@ class Data {
 	 */
 	public function getUser() {
 		return $this -> user;
-	}
-
-	/**
-	 * Set titulo
-	 *
-	 * @param string $titulo
-	 * @return Data
-	 */
-	public function setTitulo($titulo) {
-		$this -> titulo = $titulo;
-
-		return $this;
-	}
-
-	/**
-	 * Get titulo
-	 *
-	 * @return string
-	 */
-	public function getTitulo() {
-		return $this -> titulo;
 	}
 
 	/**
@@ -200,24 +172,24 @@ class Data {
 	}
 
 	/**
-	 * Set habilitado
+	 * Set visible
 	 *
-	 * @param boolean $habilitado
+	 * @param boolean $visible
 	 * @return Data
 	 */
-	public function setHabilitado($habilitado) {
-		$this -> habilitado = $habilitado;
+	public function setVisible($visible) {
+		$this -> visible = $visible;
 
 		return $this;
 	}
 
 	/**
-	 * Get habilitado
+	 * Get visible
 	 *
 	 * @return boolean
 	 */
-	public function getHabilitado() {
-		return $this -> habilitado;
+	public function getVisible() {
+		return $this -> visible;
 	}
 
 	/**
@@ -345,18 +317,18 @@ class Data {
 	}
 
 	protected function getUploadDir() {
-		$directorio = 'subidas';
+		$directorio = 'salida';
 		// get rid of the __DIR__ so it doesn't screw up
 		// when displaying uploaded doc/image in the view.
-		if ($this -> categoria -> getTipo() == 0)
+		/*if ($this -> categoria -> getTipo() == 0)
 			$directorio = 'entradas';
 		else if ($this -> categoria -> getTipo() == 1)
 			$directorio = 'archivos';
 		else if ($this -> categoria -> getTipo() == 2)
 			$directorio = 'imagenes';
 		else if ($this -> categoria -> getTipo() == 3)
-			$directorio = 'correo';
+			$directorio = 'correo';*/
 
-		return 'uploads/' . $directorio;
+		return 'front/uploads/' . $directorio;
 	}
 }

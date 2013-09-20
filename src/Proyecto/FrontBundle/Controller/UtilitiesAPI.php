@@ -1,14 +1,17 @@
 <?php
 
-namespace Proyecto\PrincipalBundle\Controller;
+namespace Proyecto\FrontBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
-
-use Proyecto\PrincipalBundle\Entity\User;
+use Proyecto\PrincipalBundle\Entity\Usuario;
 use Proyecto\PrincipalBundle\Entity\Autores;
 use Proyecto\PrincipalBundle\Entity\Sistema;
 use Proyecto\PrincipalBundle\Entity\Proyecto;
+
+use JMS\SecurityExtraBundle\Annotation\Secure;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 
 class UtilitiesAPI extends Controller {
 		public static function removeData($id,$class){
@@ -21,16 +24,31 @@ class UtilitiesAPI extends Controller {
 
 	
 	
-	public static function getDefaultContent($seccion,$subseccion,$titulo,$info,$class){
+	public static function getDefaultContent($menu,$class){
 
-		$parameters = UtilitiesAPI::getParameters($class);
-		$menu = UtilitiesAPI::getMenu($seccion,$subseccion,$titulo,$class);
 		$user = UtilitiesAPI::getActiveUser($class);
-		$notifications = UtilitiesAPI::getNotifications($user);
+		$acceso = UtilitiesAPI::getAccess($user,$class);
 		
-		$array = array('parameters' => $parameters,'menu' => $menu,'user' => $user, 'info' => $info, 'notifications' => $notifications);
-		
+		$array = array('menu' => $menu,'usuario' => $user, 'acceso'=>$acceso);
 		return $array;
+	}
+	public static function getAccess($user,$class){
+
+		$acceso = null;
+		if($user == null){
+			$error = null;
+			$ultimo_nombreusuario = null;
+			$peticion = $class -> getRequest();
+			$sesion = $peticion -> getSession();
+			// obtiene el error de inicio de sesión si lo hay
+			if ($peticion -> attributes -> has(SecurityContext::AUTHENTICATION_ERROR))
+				$error = $peticion -> attributes -> get(SecurityContext::AUTHENTICATION_ERROR);
+			else
+				$error = $sesion -> get(SecurityContext::AUTHENTICATION_ERROR);
+
+			$acceso = array('ultimo_nombreusuario' => $sesion -> get(SecurityContext::LAST_USERNAME), 'error' => $error);
+		}
+		return $acceso;
 	}
 
 	public static function getAutors($class) {

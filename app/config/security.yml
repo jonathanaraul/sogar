@@ -4,7 +4,7 @@ jms_security_extra:
 
 security:
     encoders:
-        Proyecto\PrincipalBundle\Entity\User:
+        Proyecto\PrincipalBundle\Entity\Usuario:
             algorithm:        sha1
             encode_as_base64: false
             iterations:       1
@@ -15,7 +15,7 @@ security:
 
     providers:
         administrators:
-            entity: { class: ProyectoPrincipalBundle:User, property: username }
+            entity: { class: ProyectoPrincipalBundle:Usuario, property: username }
 
     firewalls:
         secured_area:
@@ -24,9 +24,9 @@ security:
             form_login:
                 login_path:  /control/acceso
                 check_path:  /control/login_check
-                default_target_path: /
+                default_target_path: /validacion
             logout:
-              path: /control/logout
+              path: /logout
               target: /
     access_control:
         - { path: /_wdt/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }

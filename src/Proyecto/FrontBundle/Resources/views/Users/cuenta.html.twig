@@ -1,0 +1,64 @@
+{% extends "ProyectoFrontBundle:Helpers:body.html.twig" %}
+
+{%block contenido%}
+<div class="page-header">
+	<h1>Contacto</h1>
+</div>
+<div class="row">
+	<!-- Left part -->
+	<div class="span6">
+		<h2><span >{{cabecera1}}</span> {{cabecera2}}</h2>
+		<p>
+			Por favor llenar todos los campos. Al final deber&aacute;s incluir una foto de perfil.
+		</p>
+		<div id="note"></div>
+		<div id="fields" class="contact-form">
+			<form id="ajax-contact-form" action="{{ url }}" method="post" {{ form_enctype(form) }}>
+				<div class="controls controls-row">
+					{{ form_widget(form.nombre, { 'attr': {'class': 'span3', 'placeholder':'Nombre (requerido)'} }) }}
+					{{ form_widget(form.apellido, { 'attr': {'class': 'span3', 'placeholder':'Apellido (requerido)'} }) }}
+				</div>
+				<div class="controls controls-row">
+					{{ form_widget(form.username, { 'attr': {'class': 'span3', 'placeholder':'Nombre de usuario (requerido)'} }) }}
+					{{ form_widget(form.email, { 'attr': {'class': 'span3', 'placeholder':'Email (requerido)'} }) }}
+				</div>
+				<div class="controls controls-row">
+					{{ form_widget(form.password.password, { 'attr': {'class': 'span3', 'placeholder':'Password(requerido)'} }) }}
+					{{ form_widget(form.password.confirm, { 'attr': {'class': 'span3', 'placeholder':'Verificar password (requerido)'} }) }}
+				</div>
+				<div class="controls controls-row">
+					{{ form_widget(form.descripcion, { 'attr': {'class': 'span6', 'placeholder':'Escriba su mensaje aquí...', 'rows':'10'} }) }}
+				</div>
+				<div class="controls controls-row">
+					{{ form_widget(form.file) }}
+				</div>
+				<input type="submit" class="btn btn-large color-bg" name="submit" value="{%if menu=='registro'%}Guardar{%else%}Actualizar{%endif%}">
+				<div style="display: none">
+					{{ form_rest(form) }}
+				</div>
+			</form>
+		</div><!--/contact-form-->
+	</div>
+	<!--/Left part -->
+	<!-- Right part -->
+	<div class="span6  ">
+		<div class="hero-unit">
+			{%if menu == 'registro'%}
+			<h1>¡Registrate Ya!</h1>
+			<p>
+				Y podras chequear el status de tus solicitudes en l&iacute;nea sin necesidad de acudir a nuestras oficinas...
+			</p>
+			{%else%}
+			<p style="text-align: center">
+				<img src="{{ asset(''~ usuario.getWebPath ~'') }}" style="height: 261px;" >
+			</p>
+			<p style="text-align: center">
+				Recuerda volver a ingresar tu foto de perfil...
+				<a href="{{ asset(''~ usuario.getWebPath ~'') }}" target="_blank">Descargar</a>
+			</p>
+			{%endif%}
+		</div>
+	</div>
+	<!--/Right part -->
+</div>
+{%endblock%} 

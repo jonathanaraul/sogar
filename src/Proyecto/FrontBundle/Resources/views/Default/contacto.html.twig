@@ -13,18 +13,24 @@
 		</p>
 		<div id="note"></div>
 		<div id="fields" class="contact-form">
-			<form id="ajax-contact-form" action="">
+			<form id="ajax-contact-form" action="{{ path('proyecto_front_contacto') }}" method="post" {{ form_enctype(form) }}>
 				<div class="controls controls-row">
-					<input class="span3" type="text" name="name" placeholder="Nombre (requerido)">
-					<input class="span3" type="text" name="email" placeholder="Email (requerido)">
+					{{ form_widget(form.nombre, { 'attr': {'class': 'span3', 'placeholder':'Nombre (requerido)'} }) }}
+					{{ form_widget(form.email, { 'attr': {'class': 'span3', 'placeholder':'Email (requerido)'} }) }}
 				</div>
 				<div class="controls controls-row">
-					<input class="span6" type="text" name="subject" placeholder="Asunto (requerido)">
+					{{ form_widget(form.categoria, { 'attr': {'class': 'span6'} }) }}
 				</div>
 				<div class="controls controls-row">
-					<textarea class="span6" name="message" placeholder="Escriba su mensaje aqu&iacute;..." rows="10"></textarea>
+					{{ form_widget(form.mensaje, { 'attr': {'class': 'span6', 'placeholder':'Escriba su mensaje aquí...', 'rows':'10'} }) }}
+				</div>
+				<div class="controls controls-row">
+					{{ form_widget(form.file) }}
 				</div>
 				<input type="submit" class="btn btn-large color-bg" name="submit" value="Enviar">
+				<div style="display: none">
+							{{ form_rest(form) }}
+				</div>
 			</form>
 		</div><!--/contact-form-->
 	</div>
