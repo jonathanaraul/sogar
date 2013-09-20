@@ -71,16 +71,25 @@ class DefaultController extends Controller {
 	}
 
 	public function contactoAction() {
-		$array = array();
-		$array['menu'] = 'contacto';
+		$menu = 'contacto';
+		$array = UtilitiesAPI::getDefaultContent($menu,$this);
 
 		$data = new Entrada();
+		if($array['usuario']!=null){
+			$data->setNombre($array['usuario']->getNombre() .' '.$array['usuario']->getApellido());
+			$data->setEmail($array['usuario']->getEmail());
+		}
 		$tipo = '3';
 		//3= Entrada de archivos
 
-		$form = $this -> createFormBuilder($data) -> add('nombre', 'text') -> add('email', 'text') -> add('mensaje', 'textarea') -> add('categoria', 'entity', array('class' => 'ProyectoPrincipalBundle:Categoria', 'query_builder' => function(EntityRepository $er) use ($tipo) {
+		$form = $this -> createFormBuilder($data) 
+				-> add('nombre', 'text',array('disabled' => true) ) 
+				-> add('email', 'text',array('disabled' => true) ) 
+				-> add('mensaje', 'textarea') 
+				-> add('categoria', 'entity', array('class' => 'ProyectoPrincipalBundle:Categoria', 'query_builder' => function(EntityRepository $er) use ($tipo) {
 			return $er -> createQueryBuilder('sc') -> where('sc.tipo = :tipo') -> setParameter('tipo', $tipo);
-		}, )) -> add('file') -> getForm();
+		}, )) 
+				-> add('file') -> getForm();
 
 		if ($this -> getRequest() -> isMethod('POST')) {
 			$form -> bind($this -> getRequest());

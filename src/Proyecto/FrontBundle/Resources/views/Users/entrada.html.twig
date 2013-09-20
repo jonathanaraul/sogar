@@ -1,0 +1,79 @@
+{% extends "ProyectoFrontBundle:Helpers:body.html.twig" %}
+
+{%block contenido%}
+<div class="page-header">
+	<h1>Buzon de entrada</h1>
+</div>
+<div class="row">
+	<!-- Left content -->
+	<div class="span12">
+		<section class="outerDiv">
+			<p class="marB50">
+				Aqu&iacute; podr&aacute; conocer el estado de sus solicitudes, inquietudes, quejas o sugerencias... Si desea abrir un nuevo ticket no dude en utilizar nuestro <a href="{{path('proyecto_front_contacto')}}">formulario de contacto.</a>
+			</p>
+			{%if correo is null%}
+						<p class="marB50">
+				Hasta el momento no ha enviado ninguna solicitud...
+			</p>
+			{%else%}
+			<!-- Toggle Start -->
+			<div class="toggle">
+				{%for elemento in correo %} <!-- Ques -->
+				<div class="myToggler">
+					<span class="togglerSign">＋</span>{{elemento.entrada.categoria.titulo|title}} {{elemento.entrada.fecha.format('d-m-Y H:i:s')}}
+				</div>
+				<div class="mySlider" style="display: {%if loop.index0==0%}block;{%else%}none;{%endif%}">
+					<p>{{elemento.entrada.mensaje|title}}
+
+					{%if elemento.entrada.adjunto is not null%} <a href="{{ asset(''~ elemento.entrada.getWebPath~'') }}" class="btn" target="_blank">Descargar archivo</a>
+					{%endif%}
+					</p>
+					{%if elemento.salida|length >0%}
+					<table class="table">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Categoria</th>
+								<th>Fecha</th>
+								<th>Mensaje</th>
+								<th>Adjunto</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+							{%for respuesta in elemento.salida%}
+							<tr class="{%if respuesta.categoria.titulo =='Procesado'%}success{%elseif respuesta.categoria.titulo =='Cancelado'%}error{%else%}warning{%endif%}">
+								<td>{{respuesta.id}}</td>
+								<td>{{respuesta.categoria.titulo|title}}</td>
+								<td>{{respuesta.fecha.format('d-m-Y H:i:s')}}</td>
+								<td>
+									{{respuesta.mensaje|title}}
+									</td>
+								<td>
+									{%if respuesta.adjunto is not null%}
+									<a href="{{ asset(''~ respuesta.getWebPath~'') }}" class="btn" target="_blank">Descargar archivo</a>
+									{%else%}
+									No aplica
+									{%endif%}
+									</td>
+							</tr>
+							{%endfor%}
+						</tbody>
+					</table>
+					{%else%}
+					<p>No ha recibido respuesta todav&iacute;a...</p>
+					{%endif%}
+				</div>
+				<!--/Ques-->
+				{%endfor%}
+			</div><!--/toggle-->
+		
+			{%endif%}
+		</section>
+		<!-- Video Support -->
+	</div><!--/ Left content-->
+	<!-- aside
+	=========================================================================================================== -->
+	<!--/aside-->
+</div>
+{%endblock%} 

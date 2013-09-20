@@ -22,7 +22,7 @@ security:
             pattern:    ^/
             anonymous: ~
             form_login:
-                login_path:  /control/acceso
+                login_path:  /
                 check_path:  /control/login_check
                 default_target_path: /validacion
             logout:

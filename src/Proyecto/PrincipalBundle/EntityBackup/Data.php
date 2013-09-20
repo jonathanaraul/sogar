@@ -24,14 +24,14 @@ class Data {
 	private $id;
 
 	/**
-	 * @var \User
+	 * @var \Usuario
 	 *
-	 * @ORM\ManyToOne(targetEntity="User")
+	 * @ORM\ManyToOne(targetEntity="Usuario")
 	 * @ORM\JoinColumns({
-	 *   @ORM\JoinColumn(name="user", referencedColumnName="id")
+	 *   @ORM\JoinColumn(name="usuario", referencedColumnName="id")
 	 * })
 	 */
-	private $user;
+	private $usuario;
 
 	/**
 	 * @var string
@@ -95,24 +95,24 @@ class Data {
 	}
 
 	/**
-	 * Set user
+	 * Set usuario
 	 *
-	 * @param \Proyecto\PrincipalBundle\Entity\User $user
+	 * @param \Proyecto\PrincipalBundle\Entity\Usuario $usuario
 	 * @return Data
 	 */
-	public function setUser(\Proyecto\PrincipalBundle\Entity\User $user = null) {
-		$this -> user = $user;
+	public function setUsuario(\Proyecto\PrincipalBundle\Entity\Usuario $usuario = null) {
+		$this -> usuario = $usuario;
 
 		return $this;
 	}
 
 	/**
-	 * Get user
+	 * Get usuario
 	 *
-	 * @return \Proyecto\PrincipalBundle\Entity\User
+	 * @return \Proyecto\PrincipalBundle\Entity\Usuario
 	 */
-	public function getUser() {
-		return $this -> user;
+	public function getUsuario() {
+		return $this -> usuario;
 	}
 
 	/**

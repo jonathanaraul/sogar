@@ -34,6 +34,17 @@ class Salida
 	private $usuario;
 
 	/**
+	 * @var \Entrada
+	 *
+	 * @ORM\ManyToOne(targetEntity="Entrada")
+	 * @ORM\JoinColumns({
+	 *   @ORM\JoinColumn(name="entrada", referencedColumnName="id")
+	 * })
+	 */
+	private $entrada;
+
+
+	/**
 	 * @var string
 	 *
 	 * @ORM\Column(name="mensaje", type="text", nullable=false)
@@ -91,7 +102,7 @@ class Salida
 	 * Set usuario
 	 *
 	 * @param \Proyecto\PrincipalBundle\Entity\Usuario $usuario
-	 * @return Data
+	 * @return Salida
 	 */
 	public function setUsuario(\Proyecto\PrincipalBundle\Entity\Usuario $usuario = null) {
 		$this -> usuario = $usuario;
@@ -109,10 +120,30 @@ class Salida
 	}
 
 	/**
+	 * Set entrada
+	 *
+	 * @param \Proyecto\PrincipalBundle\Entity\Entrada $entrada
+	 * @return Salida
+	 */
+	public function setEntrada(\Proyecto\PrincipalBundle\Entity\Entrada $entrada = null) {
+		$this -> entrada = $entrada;
+
+		return $this;
+	}
+
+	/**
+	 * Get entrada
+	 *
+	 * @return \Proyecto\PrincipalBundle\Entity\Entrada
+	 */
+	public function getEntrada() {
+		return $this -> entrada;
+	}
+	/**
 	 * Set mensaje
 	 *
 	 * @param string $mensaje
-	 * @return Data
+	 * @return Salida
 	 */
 	public function setMensaje($mensaje) {
 		$this -> mensaje = $mensaje;
@@ -133,7 +164,7 @@ class Salida
 	 * Set adjunto
 	 *
 	 * @param string $adjunto
-	 * @return Data
+	 * @return Salida
 	 */
 	public function setAdjunto($adjunto) {
 		$this -> adjunto = $adjunto;
@@ -154,7 +185,7 @@ class Salida
 	 * Set fecha
 	 *
 	 * @param \DateTime $fecha
-	 * @return Data
+	 * @return Salida
 	 */
 	public function setFecha($fecha) {
 		$this -> fecha = $fecha;
@@ -175,7 +206,7 @@ class Salida
 	 * Set visible
 	 *
 	 * @param boolean $visible
-	 * @return Data
+	 * @return Salida
 	 */
 	public function setVisible($visible) {
 		$this -> visible = $visible;
@@ -196,7 +227,7 @@ class Salida
 	 * Set categoria
 	 *
 	 * @param \Proyecto\PrincipalBundle\Entity\Categoria $categoria
-	 * @return Data
+	 * @return Salida
 	 */
 	public function setCategoria(\Proyecto\PrincipalBundle\Entity\Categoria $categoria = null) {
 		$this -> categoria = $categoria;

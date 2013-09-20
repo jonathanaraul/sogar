@@ -113,6 +113,17 @@ class UtilitiesAPI extends Controller {
 		return $user;
 	}
 
+	public static function isUser($class) {
+
+		$user = $class -> getUser();
+
+		if ($user != NULL && false === $class -> get('security.context') -> isGranted('ROLE_USER')) {
+			throw new AccessDeniedException();
+		}
+
+		return true;
+	}
+
 	public static function getNotifications($user) {
 
 		$notifications = null;

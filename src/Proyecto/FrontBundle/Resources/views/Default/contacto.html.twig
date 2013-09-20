@@ -11,6 +11,11 @@
 		<p>
 			¿Tienes alguna solicitud, inquietud, queja o sugerencia? No dudes en contactarnos, en un m&aacute;ximo de 48 horas te responderemos.
 		</p>
+		{%if usuario is null%}
+		<p>
+			Si desea utilizar nuestro sistema para ver el estado de sus peticiones, no olvide <a href="{{ path('proyecto_front_registro') }}">registrar su usuario</a> e iniciar sesi&oacute;n con anterioridad.
+		</p>
+		{%endif%}
 		<div id="note"></div>
 		<div id="fields" class="contact-form">
 			<form id="ajax-contact-form" action="{{ path('proyecto_front_contacto') }}" method="post" {{ form_enctype(form) }}>
