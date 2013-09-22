@@ -55,7 +55,7 @@ class UtilitiesAPI extends Controller {
 		$autors = $class -> getDoctrine() -> getRepository('ProyectoPrincipalBundle:Autores') -> findAll();
 		$users = array();
 		for ($i = 0; $i < count($autors); $i++) {
-			$users[$i] = $autors[$i] -> getUser();
+			$users[$i] = $autors[$i] -> getUsuario();
 			
 		}
 
@@ -117,7 +117,7 @@ class UtilitiesAPI extends Controller {
 
 		$user = $class -> getUser();
 
-		if ($user != NULL && false === $class -> get('security.context') -> isGranted('ROLE_USER')) {
+		if ($user != NULL && false === $class -> get('security.context') -> isGranted('ROLE_USER') ) {
 			throw new AccessDeniedException();
 		}
 

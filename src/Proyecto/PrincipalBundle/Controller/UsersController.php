@@ -15,7 +15,52 @@ use Symfony\Component\Security\Core\Util\StringUtils;
 use Proyecto\PrincipalBundle\Entity\User;
 
 class UsersController extends Controller {
+	
+	public function modificarAction() {
+		$peticion = $this -> getRequest();
+		$doctrine = $this -> getDoctrine();
+		$post = $peticion -> request;
 
+		//INICIALIZAR VARIABLES
+		$tipo = $post -> get("tipo");
+		$id = intval($post -> get("id"));
+		$estatus = intval($post -> get("estatus"));
+		$em = $this->getDoctrine()->getManager();
+
+		$usuario = $em -> getRepository('ProyectoPrincipalBundle:Usuario') -> find($id);
+		
+		if($tipo == 'jerarquia'){
+			$usuario->setJerarquia($estatus);
+   
+		}
+		else{
+			$usuario->setIsActive($estatus);
+		}
+		$em->flush();
+
+		$respuesta = new response(json_encode(array('estado' => true)));
+		$respuesta -> headers -> set('content_type', 'aplication/json');
+		return $respuesta;
+	}
+
+
+	public function listadoAction() {
+                                                      
+		$firstArray = UtilitiesAPI::getDefaultContent('Usuarios', 'Listado','Listado', 'Ascienda/Degrade o Active/Desactive usuarios en el sistema', $this);
+		$secondArray = array();
+
+		$em = $this->getDoctrine()->getManager();
+		$query = $em -> createQuery('SELECT e
+    								 FROM ProyectoPrincipalBundle:Usuario e
+    								');
+
+		$secondArray['objects'] = $query -> getResult();
+		
+		
+		$array = array_merge($firstArray, $secondArray);
+		return $this -> render('ProyectoPrincipalBundle:Users:listado.html.twig', $array);
+	}
+	
 	public function accesoAction() {
 
 		$error = NULL;

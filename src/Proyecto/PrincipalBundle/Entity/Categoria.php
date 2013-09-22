@@ -29,9 +29,9 @@ class Categoria
     private $titulo;
 
     /**
-     * @var boolean
+     * @var smallint
      *
-     * @ORM\Column(name="tipo", type="boolean", nullable=false)
+     * @ORM\Column(name="tipo", type="smallint", nullable=false)
      */
     private $tipo;
 
@@ -75,7 +75,7 @@ class Categoria
     /**
      * Set tipo
      *
-     * @param boolean $tipo
+     * @param smallint $tipo
      * @return Categoria
      */
     public function setTipo($tipo)
@@ -88,7 +88,7 @@ class Categoria
     /**
      * Get tipo
      *
-     * @return boolean 
+     * @return smallint 
      */
     public function getTipo()
     {

@@ -1,0 +1,151 @@
+{% extends "ProyectoPrincipalBundle:Helpers:base.html.twig" %}
+{%block info%}{% include 'ProyectoPrincipalBundle:Helpers:info.html.twig' with {'info': info} %}{%endblock%}
+
+{%block contenido%}
+
+<div class="row-fluid">
+	<!--/span-->
+	<div class="span12">
+		<div class="widget-box ">
+			<div class="widget-header">
+				<h4 class="lighter smaller"><i class="icon-comment blue"></i> {{object.categoria.titulo|title}} </h4>
+			</div>
+			<div class="widget-body">
+				<div class="widget-main no-padding">
+					<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;">
+						<div class="dialogs" style="overflow: hidden; width: auto;">
+							<div class="itemdiv dialogdiv">
+								<div class="user">
+									<img alt="Avatar" src="{%if usuarioEntrada is not null%}{{ asset(''~ usuarioEntrada.getWebPath ~'') }}{%else%}{{ asset('admin/avatars/avatar2.png') }}{%endif%}">
+								</div>
+								<div class="body">
+									<div class="time">
+										<i class="icon-time"></i>
+										<span class="green">{{object.fecha.format('d/m/Y H:i:s')}}</span>
+									</div>
+									<div class="name">
+										<a href="#">{{object.nombre}}</a>
+									</div>
+									<div class="text">
+										{{object.mensaje}}
+										
+									{%if object.adjunto is not null%}
+									<a href="{{ asset(''~ object.getWebPath~'') }}" class="btn btn-small btn-primary" target="_blank">Descargar adjunto</a>
+									
+									{%endif%}
+									</div>
+								</div>
+							</div>
+						</div><div class="slimScrollBar ui-draggable" style="background-color: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 117px; background-position: initial initial; background-repeat: initial initial;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; background-color: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+					</div>
+					<form></form>
+				</div><!--/widget-main-->
+			</div><!--/widget-body-->
+		</div><!--/widget-box-->
+	</div><!--/span-->
+</div>
+{%if respuestas|length >0%}
+<div class="row-fluid">
+	<!--/span-->
+	<div class="span12">
+		<div class="widget-box ">
+			<div class="widget-header">
+				<h4 class="lighter smaller"><i class="icon-comment blue"></i> {%if respuestas|length >1%} Respuestas{%else%}Respuesta{%endif%}</h4>
+			</div>
+			<div class="widget-body">
+				<div class="widget-main no-padding">
+					<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto;">
+						<div class="dialogs" style="overflow: hidden; width: auto;">
+							{%for object in respuestas%}
+							<div class="itemdiv dialogdiv">
+								<div class="user">
+									<img alt="Avatar" src="{{ asset(''~ object.usuario.getWebPath ~'') }}">
+								</div>
+								<div class="body">
+									<div class="time">
+										<i class="icon-time"></i>
+										<span class="green">{{object.fecha.format('d/m/Y H:i:s')}}</span>
+									</div>
+									<div class="name">
+										<a href="#">{{object.usuario.nombre|title}} {{object.usuario.apellido|title}} - {{object.categoria.titulo|title}}</a>
+									</div>
+									<div class="text">
+										{{object.mensaje}}
+										
+									{%if object.adjunto is not null%}
+									<a href="{{ asset(''~ object.getWebPath~'') }}" class="btn btn-small btn-primary" target="_blank">Descargar adjunto</a>
+									{%endif%}
+									</div>
+								</div>
+							</div>
+							{%endfor%}
+						
+						</div><div class="slimScrollBar ui-draggable" style="background-color: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; right: 1px; height: 117px; background-position: initial initial; background-repeat: initial initial;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; background-color: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px; background-position: initial initial; background-repeat: initial initial;"></div>
+					</div>
+					<form></form>
+				</div><!--/widget-main-->
+			</div><!--/widget-body-->
+		</div><!--/widget-box-->
+	</div><!--/span-->
+</div>
+{%endif%}
+<div class="row-fluid">
+	<div class="span12">
+		<!--PAGE CONTENT BEGINS-->
+		<div class="hide" style="display: block;">
+			<div id="user-profile-3" class="user-profile row-fluid">
+				<div class="offset1 span10">
+					<!--/well-->
+					<div class="space"></div>
+					<form class="form-horizontal" action="{{ url }}" method="post" {{ form_enctype(form) }} id="formulario" >
+						<div class="tabbable">
+							<ul class="nav nav-tabs padding-16">
+								<li class="active">
+									<a data-toggle="tab" href="#edit-basic"> <i class="green icon-edit bigger-125"></i> Ingresar nueva respuesta {{ form_errors(form) }} </a>
+								</li>
+							</ul>
+							<div class="tab-content profile-edit-tab-content">
+								<div id="edit-basic" class="tab-pane active">
+									<div class="space"></div>
+
+									<div class="control-group">
+										<label class="control-label" for="form-field-website">Categoria</label>
+										<div class="controls">
+											<span class="input-icon input-icon-right"> {{ form_widget(form.categoria, { 'attr': {'style': 'width: 238px'} }) }} </span>
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="form-field-facebook">Mensaje</label>
+										<div class="controls">
+											<span class="input-icon"> {{ form_widget(form.mensaje, { 'attr': {'class': 'span12 limited textarea', 'cols': '34'} }) }} </span>
+										</div>
+									</div>
+									<div class="control-group">
+										<!-- MAX_FILE_SIZE debe preceder el campo de entrada de archivo -->
+										<label class="control-label" for="form-field-twitter">Foto</label>
+										<div class="controls">
+											<span class="input-icon"> {{ form_widget(form.file) }} </span>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="form-actions">
+							<input type="submit" class="btn btn-info" value="Enviar">
+						</div>
+						<div style="display: none">
+							{{ form_rest(form) }}
+						</div>
+					</form>
+				</div><!--/span-->
+			</div><!--/user-profile-->
+		</div>
+		<!--PAGE CONTENT ENDS-->
+	</div><!--/.span-->
+</div>
+
+
+
+
+{%endblock%} 

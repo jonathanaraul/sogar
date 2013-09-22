@@ -14,6 +14,48 @@ $( "input[type=radio]" ).on( "click", function() {
   	$("#avatar-mujer").css('display','block');
   }
 });
+$(".modifica-usuario").live("click", function() {
+	
+	var tipo = $(this).attr('tipo');
+	var codigo = $(this).parent().parent().attr('codigo');
+	var actual = $(this).parent().parent().prev();
+	var estatus = 1;
+	
+	if(tipo == 'jerarquia'){
+		actual = actual.prev();
+		if(actual.html() =='Administrador'){
+			estatus = 0;
+			actual.html('Registrado');
+		}
+		else{
+			actual.html('Administrador');
+		}
+	}
+	else{
+		if(actual.html() =='Activo'){
+		    estatus = 0;
+		    actual.html('Inactivo');
+		}
+		else{
+		    actual.html('Activo');
+		}
+
+	}
+	
+	var data = 'id='+codigo+'&tipo='+tipo+'&estatus='+estatus;
+	
+	
+	$.ajax({
+		type : "POST",
+		url : modificarUsuario,
+		data : data,
+		dataType : "json",
+		success : function(data) {
+								 }
+	      });	      
+    
+                                   }
+                  );
 $(".modificar").live("click", function() {
 	
 	var id = $(this).parent().attr('codigo');

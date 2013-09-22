@@ -51,7 +51,7 @@ class DefaultController extends Controller {
 				$array = array_merge($firstArray, $secondArray);
 
 				$em = $class -> getDoctrine() -> getManager();
-				$data -> setUser(UtilitiesAPI::getActiveUser($class));
+				$data -> setUsuario(UtilitiesAPI::getActiveUser($class));
 				if($accion == 'Nuevo')$data -> setFecha(new \DateTime());
 				$em -> persist($data);
 				$em -> flush();

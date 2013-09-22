@@ -8,9 +8,7 @@
 {%endblock%}
 {%block scripts%}
 <script type="text/javascript">
-	var eliminarObjeto = '{{path('proyecto_principal_elimina_objeto')}}';
-	var modificarObjeto = '{{path('proyecto_principal_modifica_objeto')}}';
-	var editarProyecto = '{{url}}';
+	var modificarUsuario = '{{path('proyecto_principal_usuario_modificar')}}';
 </script>
 {%endblock%}
 
@@ -43,28 +41,28 @@
 		<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
 			<thead>
 				<tr role="row">
-					<th class="" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 168px;">Titulo</th>
-					<th class="" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 121px;">Categoria</th>
-					<th class="hidden-480 " role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 132px;">Usuario</th>
-					<th class="hidden-phone " role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="
+					<th class="" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" >Nombre</th>
+					<th class="hidden-480 " role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" >Usuario</th>
+					<th class="" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 150px">Jerarquia</th>
+					<th class="" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 150px">Estado</th>
 
-					Update
-					: activate to sort column ascending" style="width: 197px;"> Fecha </th>
-					<th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="" style="width: 161px;"></th>
+					<th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="" style="width: 200px">Modificar Jerarquia/Activo</th>
 				</tr>
 			</thead>
 			<tbody role="alert" aria-live="polite" aria-relevant="all">
 				{%for object in objects%}
 				<tr class="{%if loop.index % 2 == 0%}odd{%else%}even{%endif%}">
-					<td class=" "><a href="#">{{object.titulo|title}}</a></td>
-					<td class=" ">{{object.categoria|title}}</td>
-					<td class="hidden-480 ">{{object.usuario.nombre|title}} {{object.usuario.apellido|title}}</td>
-					<td class="hidden-phone ">{{object.fecha.format('d/m/Y H:i:s')}}</td>
-					<td class="td-actions ">
-					<div class="hidden-phone visible-desktop action-buttons" codigo="{{object.id}}">
-						<a class="blue modificar" href="javascript:void(0)"> <i class="{%if object.habilitado == 1%}icon-ban-circle{%else%}icon-ok{%endif%} bigger-130"></i> </a>
-						<a class="green editar" href="javascript:void(0)"> <i class="icon-pencil bigger-130"></i> </a>
-						<a class="red eliminar" href="javascript:void(0)"> <i class="icon-trash bigger-130"></i> </a>
+					<td class=" "><a href="#">{{object.nombre|title}} {{object.apellido|title}}</a></td>
+					
+					<td class="hidden-480 ">{{object.username|title}}</td>
+					<td class="">{%if object.jerarquia == 1 %}Administrador{%else%}Registrado{%endif%}</td>
+					<td class="">{%if object.isActive == 1 %}Activo{%else%}Inactivo{%endif%}</td>
+					<td class="td-actions " codigo="{{object.id}}">
+					<div class="hidden-phone visible-desktop action-buttons" >
+						
+						<a class="blue modifica-usuario" tipo="jerarquia" href="javascript:void(0)"> <i class="icon-edit bigger-130"></i> </a>
+						<a class="blue modifica-usuario"  tipo="estado" href="javascript:void(0)"> <i class="icon-edit bigger-130"></i> </a>
+						
 					</div>
 					<div class="hidden-desktop visible-phone">
 						<div class="inline position-relative">
@@ -72,20 +70,14 @@
 								<i class="icon-caret-down icon-only bigger-120"></i>
 							</button>
 							<ul class="dropdown-menu dropdown-icon-only dropdown-yellow pull-right dropdown-caret dropdown-close">
-
 								<li>
 									<a href="#" class="tooltip-info" data-rel="tooltip" title="" data-original-title="View"> <span class="blue"> <i class="icon-ok bigger-120"></i> </span> </a>
-								</li>
-
-								<li>
-									<a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a>
-								</li>
-								<li>
-									<a href="#" class="tooltip-error" data-rel="tooltip" title="" data-original-title="Delete"> <span class="red"> <i class="icon-trash bigger-120"></i> </span> </a>
+									
 								</li>
 							</ul>
 						</div>
-					</div></td>
+					</div>
+					</td>
 				</tr>
 				{%endfor%}
 			</tbody>

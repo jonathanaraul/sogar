@@ -10,7 +10,6 @@
 <script type="text/javascript">
 	var eliminarObjeto = '{{path('proyecto_principal_elimina_objeto')}}';
 	var modificarObjeto = '{{path('proyecto_principal_modifica_objeto')}}';
-	var editarProyecto = '{{url}}';
 </script>
 {%endblock%}
 
@@ -43,28 +42,47 @@
 		<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
 			<thead>
 				<tr role="row">
-					<th class="" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 168px;">Titulo</th>
+					<th class="" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 168px;">Nombre</th>
+					<th class="hidden-480 " role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 132px;">Email</th>
 					<th class="" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 121px;">Categoria</th>
-					<th class="hidden-480 " role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="" style="width: 132px;">Usuario</th>
+					
 					<th class="hidden-phone " role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" aria-label="
 
 					Update
 					: activate to sort column ascending" style="width: 197px;"> Fecha </th>
-					<th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="" style="width: 161px;"></th>
+					<th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="" style="width: 161px;">Leer/Responder</th>
+					<th class="sorting_disabled" role="columnheader" rowspan="1" colspan="1" aria-label="" style="width: 161px;">Leido/Respondido</th>
 				</tr>
 			</thead>
 			<tbody role="alert" aria-live="polite" aria-relevant="all">
 				{%for object in objects%}
 				<tr class="{%if loop.index % 2 == 0%}odd{%else%}even{%endif%}">
-					<td class=" "><a href="#">{{object.titulo|title}}</a></td>
+					<td class=" "><a href="#">{{object.nombre|title}}</a></td>
+					
+					<td class="hidden-480 ">{{object.email|title}}</td>
 					<td class=" ">{{object.categoria|title}}</td>
-					<td class="hidden-480 ">{{object.usuario.nombre|title}} {{object.usuario.apellido|title}}</td>
 					<td class="hidden-phone ">{{object.fecha.format('d/m/Y H:i:s')}}</td>
 					<td class="td-actions ">
+					<div class="hidden-phone visible-desktop action-buttons" >
+						<a class="blue" href="javascript:void(0)" onclick="document.location.href = '{{ path('proyecto_principal_correo_entrada', {'id': object.getId}) }}'"> <i class="icon-exchange bigger-130"></i> </a>
+					</div>
+					<div class="hidden-desktop visible-phone">
+						<div class="inline position-relative">
+							<button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+								<i class="icon-caret-down icon-only bigger-120"></i>
+							</button>
+							<ul class="dropdown-menu dropdown-icon-only dropdown-yellow pull-right dropdown-caret dropdown-close">
+								<li>
+									<a href="#" class="tooltip-info" data-rel="tooltip" title="" data-original-title="View"> <span class="blue"> <i class="icon-ok bigger-120"></i> </span> </a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					</td>
+					<td class="td-actions ">
 					<div class="hidden-phone visible-desktop action-buttons" codigo="{{object.id}}">
-						<a class="blue modificar" href="javascript:void(0)"> <i class="{%if object.habilitado == 1%}icon-ban-circle{%else%}icon-ok{%endif%} bigger-130"></i> </a>
-						<a class="green editar" href="javascript:void(0)"> <i class="icon-pencil bigger-130"></i> </a>
-						<a class="red eliminar" href="javascript:void(0)"> <i class="icon-trash bigger-130"></i> </a>
+						<a class="{%if object.leido== 1%}green{%else%}red{%endif%}" href="javascript:void(0)"> <i class=" icon-check{%if object.leido== 0%}-empty{%endif%} bigger-130"></i> </a>
+						<a class="{%if object.respondido== 1%}green{%else%}red{%endif%}" href="javascript:void(0)"> <i class="icon-check{%if object.respondido== 0%}-empty{%endif%} bigger-130"></i> </a>
 					</div>
 					<div class="hidden-desktop visible-phone">
 						<div class="inline position-relative">
@@ -73,10 +91,7 @@
 							</button>
 							<ul class="dropdown-menu dropdown-icon-only dropdown-yellow pull-right dropdown-caret dropdown-close">
 
-								<li>
-									<a href="#" class="tooltip-info" data-rel="tooltip" title="" data-original-title="View"> <span class="blue"> <i class="icon-ok bigger-120"></i> </span> </a>
-								</li>
-
+						
 								<li>
 									<a href="#" class="tooltip-success" data-rel="tooltip" title="" data-original-title="Edit"> <span class="green"> <i class="icon-edit bigger-120"></i> </span> </a>
 								</li>
@@ -85,7 +100,8 @@
 								</li>
 							</ul>
 						</div>
-					</div></td>
+					</div>
+					</td>
 				</tr>
 				{%endfor%}
 			</tbody>

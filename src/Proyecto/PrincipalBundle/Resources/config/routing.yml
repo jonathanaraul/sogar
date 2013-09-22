@@ -67,6 +67,15 @@ proyecto_principal_imagen_listado:
 proyecto_principal_correo_listado:
     pattern:  /correo/listado
     defaults: { _controller: ProyectoPrincipalBundle:Correo:listado }
-proyecto_principal_correo_leer:
-    pattern:  /correo/leer/{id}
-    defaults: { _controller: ProyectoPrincipalBundle:Correo:leer,id: '1' }
+proyecto_principal_correo_entrada:
+    pattern:  /correo/entrada/{id}
+    defaults: { _controller: ProyectoPrincipalBundle:Correo:entrada,id: '1' }
+
+proyecto_principal_usuario_listado:
+    pattern:  /usuario/listado
+    defaults: { _controller: ProyectoPrincipalBundle:Users:listado }
+proyecto_principal_usuario_modificar:
+    pattern:  /usuario/modificar
+    defaults: { _controller: ProyectoPrincipalBundle:Users:modificar }
+    requirements:
+      _method: POST

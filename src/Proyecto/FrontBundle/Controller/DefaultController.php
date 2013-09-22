@@ -19,7 +19,7 @@ class DefaultController extends Controller {
 	}
 
 	public function organizacionAction() {
-		$array['menu'] = 'organizacion';
+		$array = UtilitiesAPI::getDefaultContent('organizacion', $this);
 		$array['titulo'] = 'La Organizaci&oacute;n';
 		$array['objects'] = APIController::findDataByTitleCategory($array['menu'], $this);
 		$array['ruta'] = 'proyecto_front_organizacion_articulo';
@@ -28,7 +28,7 @@ class DefaultController extends Controller {
 	}
 
 	public function informacionAction() {
-		$array['menu'] = 'informacion';
+		$array = UtilitiesAPI::getDefaultContent('informacion', $this);
 		$array['titulo'] = 'Informaci&oacute;n';
 		$array['ruta'] = 'proyecto_front_informacion_articulo';
 		$array['objects'] = APIController::findDataByTitleCategory($array['menu'], $this);
@@ -37,6 +37,7 @@ class DefaultController extends Controller {
 	}
 
 	public function articuloAction($id) {
+		$array = UtilitiesAPI::getDefaultContent('articulo', $this);
 		$array['object'] = $this -> getDoctrine() -> getRepository('ProyectoPrincipalBundle:Data') -> find($id);
 
 		if (!$array['object']) {
@@ -53,8 +54,7 @@ class DefaultController extends Controller {
 	}
 
 	public function descargasAction() {
-		$array['menu'] = 'descargas';
-
+		$array = UtilitiesAPI::getDefaultContent('descargas', $this);
 		$array['objects'] = $this -> getDoctrine() -> getRepository('ProyectoPrincipalBundle:Categoria') -> findByTipo(1);
 
 		$em = $this -> getDoctrine() -> getManager();
@@ -71,8 +71,7 @@ class DefaultController extends Controller {
 	}
 
 	public function contactoAction() {
-		$menu = 'contacto';
-		$array = UtilitiesAPI::getDefaultContent($menu,$this);
+		$array = UtilitiesAPI::getDefaultContent('contacto', $this);
 
 		$data = new Entrada();
 		if($array['usuario']!=null){

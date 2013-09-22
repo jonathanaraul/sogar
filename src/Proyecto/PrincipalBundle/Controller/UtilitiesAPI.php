@@ -37,7 +37,7 @@ class UtilitiesAPI extends Controller {
 		$autors = $class -> getDoctrine() -> getRepository('ProyectoPrincipalBundle:Autores') -> findAll();
 		$users = array();
 		for ($i = 0; $i < count($autors); $i++) {
-			$users[$i] = $autors[$i] -> getUser();
+			$users[$i] = $autors[$i] -> getUsuario();
 			
 		}
 

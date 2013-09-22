@@ -460,7 +460,7 @@ class Usuario implements UserInterface, \Serializable
     {
         // get rid of the __DIR__ so it doesn't screw up
         // when displaying uploaded doc/image in the view.
-        return 'general/avatars';
+        return 'uploads/avatars';
     }
 
 }

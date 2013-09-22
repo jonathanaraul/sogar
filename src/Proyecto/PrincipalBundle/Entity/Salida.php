@@ -11,7 +11,8 @@ use Proyecto\PrincipalBundle\Entity\Categoria;
  * Salida
  *
  * @ORM\Table(name="salida")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Proyecto\PrincipalBundle\Entity\UsuarioRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Salida
 {

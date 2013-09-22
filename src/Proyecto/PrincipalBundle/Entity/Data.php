@@ -354,8 +354,6 @@ class Data {
 			$directorio = 'archivos';
 		else if ($this -> categoria -> getTipo() == 2)
 			$directorio = 'imagenes';
-		else if ($this -> categoria -> getTipo() == 3)
-			$directorio = 'correo';
 
 		return 'uploads/' . $directorio;
 	}

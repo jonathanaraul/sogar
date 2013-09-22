@@ -42,7 +42,7 @@
 			<a href="{{ path('proyecto_principal_acceso') }}"> <i class="icon-double-angle-right"></i> Nuevo </a>
 		</li>-->
 		<li {%if menu.subseccion == 'Listado de mensajes recibidos' %}class="active"{%endif%}>
-			<a href="{{ path('proyecto_principal_correo_listado') }}"> <i class="icon-double-angle-right"></i> Entrada </a>
+			<a href="{{ path('proyecto_principal_correo_listado') }}"> <i class="icon-double-angle-right"></i> Listado </a>
 		</li>
 		<!--<li {%if menu.seccion == 'Listado Entradas' %}class="active"{%endif%}>
 			<a href="{{ path('proyecto_principal_registro') }}"> <i class="icon-double-angle-right"></i> Salida </a>
@@ -62,8 +62,8 @@
 		</li>
 		{%endif%}
 		{%if user is not null %}
-		<li {%if menu.subseccion == 'Mi Perfil' %}class="active"{%endif%}>
-			<a href="{{ path('proyecto_principal_perfil') }}"> <i class="icon-double-angle-right"></i> Perfil </a>
+		<li {%if menu.subseccion == 'Listado' %}class="active"{%endif%}>
+			<a href="{{ path('proyecto_principal_usuario_listado') }}"> <i class="icon-double-angle-right"></i> Listado </a>
 		</li>
 		<li >
 			<a href="{{ path('proyecto_front_cerrarsesion') }}"> <i class="icon-double-angle-right"></i> Cerrar sesi&oacute;n </a>
